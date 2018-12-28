@@ -31,7 +31,7 @@ public class instrumentSelection : MonoBehaviour {
     }
 
 	
-	
+	 
 	// Update is called once per frame
 	void Update () {
         // if there is limited quantity then hide the instrument when used up
