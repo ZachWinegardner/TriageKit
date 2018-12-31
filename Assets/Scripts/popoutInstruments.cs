@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR; 
 
 public class popoutInstruments : MonoBehaviour {
 
@@ -44,6 +45,16 @@ public class popoutInstruments : MonoBehaviour {
             instruments[i].localScale *= 0.1f;
             //StartCoroutine(PopOpen(instruments[i]));
         }
+
+    }
+
+    private void Update()
+    {
+		if (SteamVR_Input._default.inActions.GrabGrip.GetStateDown(SteamVR_Input_Sources.RightHand))
+        {
+            Grabbed(); 
+        }
+
 
     }
 
