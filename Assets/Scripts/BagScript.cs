@@ -7,12 +7,12 @@ public class BagScript : MonoBehaviour {
 
 
     Transform hipParent;
-    Quaternion hipRotation;
+    Vector3 hipRotation; 
 
     public void Start()
     {
         hipParent = transform.parent;
-        hipRotation = transform.rotation; 
+        hipRotation = transform.localEulerAngles; 
     }
     private void Update()
     {
@@ -20,8 +20,6 @@ public class BagScript : MonoBehaviour {
         {
             ReturnToHip(); 
         }
-
-
     }
    
     public void Grabbed()
@@ -32,7 +30,7 @@ public class BagScript : MonoBehaviour {
     public void ReturnToHip()
     {
         transform.parent = hipParent;
-        transform.localPosition = Vector3.zero;
-        transform.rotation = hipRotation;
+        transform.localPosition = Vector3.zero; 
+        transform.localEulerAngles = hipRotation;
     }
 }
