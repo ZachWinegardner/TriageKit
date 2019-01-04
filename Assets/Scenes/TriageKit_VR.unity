@@ -610,11 +610,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4125906861904836, guid: 710d1c80ed2acf94585ef7c6b828961e,
     type: 2}
   m_PrefabInternal: {fileID: 281376283}
---- !u!4 &799012222 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4655943017194452, guid: 1a156323628be8c45bcfd555d6b75be9,
-    type: 2}
-  m_PrefabInternal: {fileID: 1200483056}
 --- !u!1 &825204360 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1608450900382352, guid: 710d1c80ed2acf94585ef7c6b828961e,
@@ -754,6 +749,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114554247614473500, guid: 1a156323628be8c45bcfd555d6b75be9,
+        type: 2}
+      propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4181825620320314, guid: 1a156323628be8c45bcfd555d6b75be9, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -786,60 +786,53 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114340468836094828, guid: 1a156323628be8c45bcfd555d6b75be9,
+    - target: {fileID: 114554247614473500, guid: 1a156323628be8c45bcfd555d6b75be9,
         type: 2}
-      propertyPath: hipOffset.y
-      value: -0.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 4646792494856308, guid: 1a156323628be8c45bcfd555d6b75be9, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4646792494856308, guid: 1a156323628be8c45bcfd555d6b75be9, type: 2}
-      propertyPath: m_LocalRotation.y
+      propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4646792494856308, guid: 1a156323628be8c45bcfd555d6b75be9, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4646792494856308, guid: 1a156323628be8c45bcfd555d6b75be9, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4646792494856308, guid: 1a156323628be8c45bcfd555d6b75be9, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 4337723928765448, guid: 1a156323628be8c45bcfd555d6b75be9, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0.129
-      objectReference: {fileID: 0}
-    - target: {fileID: 4337723928765448, guid: 1a156323628be8c45bcfd555d6b75be9, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114340468836094828, guid: 1a156323628be8c45bcfd555d6b75be9,
+    - target: {fileID: 114554247614473500, guid: 1a156323628be8c45bcfd555d6b75be9,
         type: 2}
-      propertyPath: Vis
+      propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114554247614473500, guid: 1a156323628be8c45bcfd555d6b75be9,
+        type: 2}
+      propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1495556130}
-    - target: {fileID: 114340468836094828, guid: 1a156323628be8c45bcfd555d6b75be9,
+      objectReference: {fileID: 2047538979}
+    - target: {fileID: 114554247614473500, guid: 1a156323628be8c45bcfd555d6b75be9,
         type: 2}
-      propertyPath: adjustment
-      value: 15
+      propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Grabbed
       objectReference: {fileID: 0}
-    - target: {fileID: 4337723928765448, guid: 1a156323628be8c45bcfd555d6b75be9, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -0.14
+    - target: {fileID: 114554247614473500, guid: 1a156323628be8c45bcfd555d6b75be9,
+        type: 2}
+      propertyPath: onPickUp.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114554247614473500, guid: 1a156323628be8c45bcfd555d6b75be9,
+        type: 2}
+      propertyPath: onDetachFromHand.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Released
+      objectReference: {fileID: 0}
+    - target: {fileID: 114423987520604908, guid: 1a156323628be8c45bcfd555d6b75be9,
+        type: 2}
+      propertyPath: viewportRangeMax
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114423987520604908, guid: 1a156323628be8c45bcfd555d6b75be9,
+        type: 2}
+      propertyPath: viewportRangeMin
+      value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114265860437914096, guid: 1a156323628be8c45bcfd555d6b75be9,
+        type: 2}
+      propertyPath: speed
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 114696466268197736, guid: 1a156323628be8c45bcfd555d6b75be9, type: 2}
-    - {fileID: 114089271812846066, guid: 1a156323628be8c45bcfd555d6b75be9, type: 2}
-    - {fileID: 114911455640253382, guid: 1a156323628be8c45bcfd555d6b75be9, type: 2}
-    - {fileID: 54686087025007040, guid: 1a156323628be8c45bcfd555d6b75be9, type: 2}
-    - {fileID: 114200326008283576, guid: 1a156323628be8c45bcfd555d6b75be9, type: 2}
-    - {fileID: 65825644811875354, guid: 1a156323628be8c45bcfd555d6b75be9, type: 2}
+    - {fileID: 114804160110611284, guid: 1a156323628be8c45bcfd555d6b75be9, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 1a156323628be8c45bcfd555d6b75be9, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1395721412 stripped
@@ -941,20 +934,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1503277872124220, guid: 1a156323628be8c45bcfd555d6b75be9,
     type: 2}
   m_PrefabInternal: {fileID: 1200483056}
---- !u!114 &1495556130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1495556128}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5aed412c9f5176d4b80d39e9b5375dbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isSeen: 0
-  viewportRangeMax: 1.2
-  viewportRangeMin: -0.2
 --- !u!1 &1510263663 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1794263582537286, guid: 710d1c80ed2acf94585ef7c6b828961e,
@@ -1338,11 +1317,6 @@ Transform:
   m_Father: {fileID: 1659980151}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1827892315 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4973427235601392, guid: 1a156323628be8c45bcfd555d6b75be9,
-    type: 2}
-  m_PrefabInternal: {fileID: 1200483056}
 --- !u!4 &1849615377 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4228256704303024, guid: 710d1c80ed2acf94585ef7c6b828961e,
@@ -1459,7 +1433,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1299575808732094, guid: 1a156323628be8c45bcfd555d6b75be9,
     type: 2}
   m_PrefabInternal: {fileID: 1200483056}
---- !u!114 &2047538974
+--- !u!114 &2047538971
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1467,48 +1441,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2047538969}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffefbea063cab884ca33e5a449e5c22c, type: 3}
+  m_Script: {fileID: 11500000, guid: c4153b26428ccf041950b92c057812a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attachmentFlags: 80
-  attachmentOffset: {fileID: 0}
-  catchingSpeedThreshold: -1
-  releaseVelocityStyle: 0
-  releaseVelocityTimeOffset: -0.011
-  scaleReleaseVelocity: 1.1
-  restoreOriginalParent: 0
-  attachEaseIn: 0
-  snapAttachEaseInCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  snapAttachEaseInTime: 0.15
-  onPickUp:
+  onHandHoverBegin:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2047538977}
-        m_MethodName: set_isKinematic
-        m_Mode: 6
+      - m_Target: {fileID: 2047538979}
+        m_MethodName: Touched
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1519,214 +1460,27 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  onDetachFromHand:
+  onHandHoverEnd:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2047538977}
-        m_MethodName: set_isKinematic
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 2047538979}
-        m_MethodName: Grabbed
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  snapAttachEaseInCompleted: 0
-  interactable: {fileID: 0}
---- !u!114 &2047538975
+  onAttachedToHand:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onDetachedFromHand:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &2047538979 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2047538969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 783750eec4c41da428b7651515146d14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocityAverageFrames: 5
-  angularVelocityAverageFrames: 11
-  estimateOnAwake: 0
---- !u!114 &2047538976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2047538969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b93b6a877adcbf94c89a9d6e0c0e844d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activateActionSetOnAttach: {fileID: 0}
-  hideHandOnAttach: 1
-  hideSkeletonOnAttach: 0
-  hideControllerOnAttach: 0
-  handAnimationOnPickup: 0
-  setRangeOfMotionOnPickup: -1
-  useHandObjectAttachmentPoint: 1
-  handFollowTransform: {fileID: 0}
-  handFollowTransformPosition: 1
-  handFollowTransformRotation: 1
-  highlightOnHover: 1
-  hideHighlight: []
---- !u!54 &2047538977
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2047538969}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &2047538978
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2047538969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c427c295b8d50ba4ab0be8a89ebe67a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  popoutRoot: {fileID: 1827892315}
-  bagLid: {fileID: 799012222}
-  speed: 1
-  popoutCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 1.9099911
-      outSlope: 1.9099911
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.060879365
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  retractCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  xSpreadCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  scaleCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0.037417404
-      outSlope: 0.037417404
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33468688
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  lidOpenCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!114 &2047538979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2047538969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 114423987520604908, guid: 1a156323628be8c45bcfd555d6b75be9,
+    type: 2}
+  m_PrefabInternal: {fileID: 1200483056}
   m_Script: {fileID: 11500000, guid: 5ff6e2777acfdd04a84c0f63029cac34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2135660146 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1664196096775508, guid: 710d1c80ed2acf94585ef7c6b828961e,

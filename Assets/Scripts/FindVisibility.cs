@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class FindVisibility : MonoBehaviour {
 
-    //This script goes on the traige kit (rooted at hip) to check if it is within view
-    //The kit G.O. never moves from the hip, so we need to check it, not the bag. 
-    //When the bag is at the hip, its transform coincides with the kit's
+    //This script checks to the converted obj's position in Viewport space
 
     Vector3 objViewPos, lastPos, center;
     public bool isSeen = false;

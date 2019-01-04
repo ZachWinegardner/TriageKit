@@ -30,12 +30,14 @@ public class popoutInstruments : MonoBehaviour {
         bagLid.localEulerAngles = Vector3.zero; 
 
 
-        //Store all the transform info for any parented tools, then set their pos and scale
+        //Store all the transform info for any parented tools, then set their starting pos and scale
         int count = popoutRoot.childCount;
         instruments = new Transform[count];
         positions = new Vector3[count];
         rotations = new Quaternion[count];
         scales = new Vector3[count];
+
+        //zero tools out into closed position
         for (int i = 0; i < count; i++) {
             instruments[i] = popoutRoot.GetChild(i);
             positions[i] = instruments[i].localPosition;
@@ -47,30 +49,27 @@ public class popoutInstruments : MonoBehaviour {
         }
 
     }
-
-    private void Update()
-    {
-		if (SteamVR_Input._default.inActions.GrabGrip.GetStateDown(SteamVR_Input_Sources.RightHand))
-        {
-            Grabbed(); 
-        }
-
-
-    }
-
-    //Grabbed() is a ubiquitous function for any interactive? Each object, including the bag would have Grabbed()
-    //When event occurs, like a click, or touch, or button, (SendMessage "Grabbed") is called to that scecific item
-    //The bag here, when clicked, opens the tools | but the tools when "Grabbed()" might instantiate or do something different
-    //Easy way for player (mouse, controller, etc) to call the same function with one line of code, but each item does its own unique thing
-    public void Grabbed() {
+   
+    
+    public void OpenBag() {
         int count = popoutRoot.childCount;
         instruments = new Transform[count];
         for (int i = 0; i < count; i++) {
             instruments[i] = popoutRoot.GetChild(i);
             StartCoroutine(PopOpen(i));
-        }
+        }        
     }
 
+    public void CloseBag()
+    {
+        int count = popoutRoot.childCount;
+        instruments = new Transform[count];
+        for (int i = 0; i < count; i++)
+        {
+            instruments[i] = popoutRoot.GetChild(i);
+            StartCoroutine(Close(i));
+        }      
+    }
     //Animates the tools from V3.zero, to their starting position in the scene, which is their specific menu position
     IEnumerator PopOpen(int instrumentIndex) {
         Transform instrument = instruments[instrumentIndex];
@@ -89,25 +88,45 @@ public class popoutInstruments : MonoBehaviour {
         }
         instrument.localPosition = destPos;
         instrument.localScale = destScale;
+
     }
 
-    IEnumerator Close(Transform instrument) {
+    IEnumerator Close(int instrumentIndex) {
         print("closing"); 
-        Vector3 destScale = instrument.localScale;
-        Vector3 destPos = instrument.localPosition;
-        Quaternion destRot = instrument.localRotation;
-        Vector3 startScale = instrument.localScale * 0.05f;
-        Vector3 startPos = Vector3.zero; // to improve
+        Transform instrument = instruments[instrumentIndex];
+        Vector3 destScale = (scales[instrumentIndex]*01f);
+        Vector3 destPos = Vector3.zero;
+        Quaternion destRot = rotations[instrumentIndex];
+        Vector3 startScale = instrument.localScale;
+        Vector3 startPos = instrument.localPosition;
         float lerper = 0;
-        while (lerper < 1.0f) {
+        while (lerper < 1.0f)
+        {
 
             instrument.localPosition = Vector3.Lerp(startPos, destPos, popoutCurve.Evaluate(lerper));
             instrument.localScale = Vector3.Lerp(startScale, destScale, popoutCurve.Evaluate(lerper));
+            bagLid.localEulerAngles = new Vector3(Mathf.Lerp(-90, 0, lidOpenCurve.Evaluate(lerper)), 0, 0);
             lerper += Time.deltaTime * speed;
             yield return null;
         }
         instrument.localPosition = destPos;
         instrument.localScale = destScale;
+
+        //Vector3 destScale = instrument.localScale;
+        //Vector3 destPos = instrument.localPosition;
+        //Quaternion destRot = instrument.localRotation;
+        //Vector3 startScale = instrument.localScale * 0.05f;
+        //Vector3 startPos = Vector3.zero; // to improve
+        //float lerper = 0;
+        //while (lerper < 1.0f) {
+
+        //    instrument.localPosition = Vector3.Lerp(startPos, destPos, popoutCurve.Evaluate(lerper));
+        //    instrument.localScale = Vector3.Lerp(startScale, destScale, popoutCurve.Evaluate(lerper));
+        //    lerper += Time.deltaTime * speed;
+        //    yield return null;
+        //}
+        //instrument.localPosition = destPos;
+        //instrument.localScale = destScale;
     }
 
     // Update is called once per frame
