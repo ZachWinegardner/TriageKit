@@ -40,22 +40,21 @@ public class BagScript : MonoBehaviour {
             popout.OpenBag();
         }
 
-        if (SteamVR_Input._default.inActions.GrabGrip.GetStateDown(SteamVR_Input_Sources.LeftHand))
-        {
-            popout.CloseBag();
-            isOpen = false; 
-        }
-
+        //if (SteamVR_Input._default.inActions.GrabGrip.GetStateDown(SteamVR_Input_Sources.LeftHand))
+        //{
+        //    popout.CloseBag();
+        //    isOpen = false; 
+        //}
 
         SetToViewport();
         isSeen = IsWithinViewport(objViewPos);
 
     }
 
-    //Grabbed() or Touched() is a ubiquitous function for any interactive Each object, including the bag would have Grabbed()
+    //Grabbed() or Touched() is a ubiquitous function for any interactive. Each  interactive object, including the bag, would have Grabbed()
     //When event occurs, like a click, or touch, or button, (SendMessage "Grabbed") is called to that spcecific item
-    //The bag here, when clicked, opens the tools | but the tools when "Grabbed()" might instantiate or do something different
-    //Easy way for player (mouse, controller, etc) to call the same function with one line of code, but each item does its own unique thing
+    //The bag here, when touched, opens the tools | but the tools when "Grabbed()" might instantiate or do something different
+    //Easy way for player (mouse, controller, etc) to call the same function with one line of code, but each item does its own unique thing wihtin Grabbed()
     public void Touched()
     {
         //if the bag is in view and closed, open it
@@ -64,11 +63,17 @@ public class BagScript : MonoBehaviour {
             popout.OpenBag();
             isOpen = true; 
         }                          
-    }    
+    }
+    
+    public void Grabbed(Transform hand)
+    {
+        transform.parent = hand; 
+    }
 
     public void Released()
     {
-        transform.parent = null; 
+        transform.parent = null;
+
     }
 
     public void ReturnToHip()
