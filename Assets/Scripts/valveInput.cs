@@ -9,6 +9,9 @@ public class valveInput : MonoBehaviour {
     
     private Hand hand;
     private Transform draggableObject;
+    public Transform toolInHand;
+    public Transform tagInHand; 
+    public bool holdingTag = false; 
     
 
 	void Start () {
@@ -17,35 +20,56 @@ public class valveInput : MonoBehaviour {
 
     void Update() {
 
+        //Send Grabbed message to touched object when trigger pulled
         if (getPinchDown())
         {
+            //if holding a tool (grabbed function on tools' instrumentSelection.cs set this variable) 
+            if (toolInHand != null)
+            {
+                //Let go of tool
+                toolInHand.GetComponent<instrumentSelection>().SendMessage("Released", transform, SendMessageOptions.DontRequireReceiver);
+                toolInHand = null;
+            }
+
+            //Pickup touched object (if tool, stores "toolInHand" if tag, stores "tagInHand")
             if (draggableObject != null)
             {
                 draggableObject.SendMessage("Grabbed", transform, SendMessageOptions.DontRequireReceiver);          
             }
+
+            
         }
 
         if (getPinchUp())
         {
-            if (draggableObject != null)
+            //For letting go of bag
+            if (draggableObject != null && toolInHand == null && tagInHand == null)
             {
                 draggableObject.SendMessage("Released", SendMessageOptions.DontRequireReceiver);                
+            }
+
+            //For letting go of tags
+            if (tagInHand != null)
+            {
+                tagInHand.SendMessage("Released", SendMessageOptions.DontRequireReceiver);
+                tagInHand = null; 
             }
         }
     }
 
 
+    //Detect if touching object and store object
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "draggable")
         {
             draggableObject = collision.transform;
             
-            if (draggableObject.name == "Bag(Grabbable)")
+            if (draggableObject.GetComponent<BagScript>())
             {
                 draggableObject.GetComponent<BagScript>().Touched(); 
             }
-        }
+        }        
     }
 
     private void OnCollisionExit(Collision collision)

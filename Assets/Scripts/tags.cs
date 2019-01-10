@@ -17,13 +17,19 @@ public class tags : MonoBehaviour {
         localscale = transform.localScale;
     }
 
-    public void Grabbed() {
-        Debug.Log("tag " + gameObject.name + "picked up.");
+    public void Grabbed(Transform hand) {
+        //Debug.Log("tag " + gameObject.name + "picked up.");
+        transform.SetParent(hand);
+        hand.GetComponent<valveInput>().tagInHand = transform; 
+        
+
     }
 
     public void Released() {
-        Debug.Log("tag " + gameObject.name + "dropped.");
+       // Debug.Log("tag " + gameObject.name + "dropped.");
         gameObject.GetComponent<Rigidbody>().isKinematic = false;
+        transform.parent = null; 
+
         // make a new tag
         GameObject newTag = Instantiate(gameObject) as GameObject;
         newTag.GetComponent<Rigidbody>().isKinematic = true;

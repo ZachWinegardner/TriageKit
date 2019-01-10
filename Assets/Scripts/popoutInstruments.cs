@@ -5,7 +5,7 @@ using Valve.VR;
 
 public class popoutInstruments : MonoBehaviour {
 
-    public Transform popoutRoot, bagLid;
+    public Transform popoutRoot;
     public float speed;
     public AnimationCurve popoutCurve;
     public AnimationCurve retractCurve;
@@ -26,8 +26,8 @@ public class popoutInstruments : MonoBehaviour {
     void Start () {
         //Find the bag lid, and set its rotation to zero
         //Also stores position it starts in, may not use
-        lidRotationDest = bagLid.localEulerAngles;
-        bagLid.localEulerAngles = Vector3.zero; 
+        //lidRotationDest = bagLid.localEulerAngles;
+       // bagLid.localEulerAngles = Vector3.zero; 
 
 
         //Store all the transform info for any parented tools, then set their starting pos and scale
@@ -49,8 +49,20 @@ public class popoutInstruments : MonoBehaviour {
         }
 
     }
-   
-    
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            OpenBag(); 
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            CloseBag();
+        }
+    }
+
+
     public void OpenBag() {
         int count = popoutRoot.childCount;
         instruments = new Transform[count];
@@ -82,7 +94,7 @@ public class popoutInstruments : MonoBehaviour {
         while (lerper < 1.0f) {
             instrument.localPosition = Vector3.Lerp(startPos, destPos, popoutCurve.Evaluate(lerper));
             instrument.localScale = Vector3.Lerp(startScale,destScale, scaleCurve.Evaluate(lerper));
-            bagLid.localEulerAngles = new Vector3(Mathf.Lerp(0, -90, lidOpenCurve.Evaluate(lerper)), 0, 0); 
+           // bagLid.localEulerAngles = new Vector3(Mathf.Lerp(0, -90, lidOpenCurve.Evaluate(lerper)), 0, 0); 
             lerper += Time.deltaTime * speed;
             yield return null;
         }
@@ -94,7 +106,7 @@ public class popoutInstruments : MonoBehaviour {
     IEnumerator Close(int instrumentIndex) {
         print("closing"); 
         Transform instrument = instruments[instrumentIndex];
-        Vector3 destScale = (scales[instrumentIndex]*01f);
+        Vector3 destScale = (scales[instrumentIndex]*0.01f);
         Vector3 destPos = Vector3.zero;
         Quaternion destRot = rotations[instrumentIndex];
         Vector3 startScale = instrument.localScale;
@@ -105,7 +117,7 @@ public class popoutInstruments : MonoBehaviour {
 
             instrument.localPosition = Vector3.Lerp(startPos, destPos, popoutCurve.Evaluate(lerper));
             instrument.localScale = Vector3.Lerp(startScale, destScale, popoutCurve.Evaluate(lerper));
-            bagLid.localEulerAngles = new Vector3(Mathf.Lerp(-90, 0, lidOpenCurve.Evaluate(lerper)), 0, 0);
+            //bagLid.localEulerAngles = new Vector3(Mathf.Lerp(-90, 0, lidOpenCurve.Evaluate(lerper)), 0, 0);
             lerper += Time.deltaTime * speed;
             yield return null;
         }
@@ -128,10 +140,5 @@ public class popoutInstruments : MonoBehaviour {
         //instrument.localPosition = destPos;
         //instrument.localScale = destScale;
     }
-
-    // Update is called once per frame
-    void LateUpdate () {
-        // set position of triage kit to player - do this later
-        // transform.root.position = new Vector3(Camera.main.transform.position.x, 0, Camera.main.transform.position.z);
-	}
+    
 }

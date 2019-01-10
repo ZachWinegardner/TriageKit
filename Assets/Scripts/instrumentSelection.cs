@@ -13,11 +13,20 @@ public class instrumentSelection : MonoBehaviour {
 
     }
 
-    public void Grabbed() {
-        Debug.Log("instrument " + gameObject.name + "picked up.");
-        gameObject.GetComponent<Renderer>().enabled = false;
+    public void Grabbed(Transform hand) {
+        //Debug.Log("instrument " + gameObject.name + "picked up.");
+        //gameObject.GetComponent<Renderer>().enabled = false;
+       
         GameObject instrument = Instantiate(operableInstrumentPrefab, transform.position, transform.rotation) as GameObject;
+        instrument.transform.SetParent(hand);
+        hand.GetComponent<valveInput>().toolInHand = instrument.transform; 
+        //Set position and orientation based on specific tool         
         count++;
+    }
+
+    public void Released()
+    {
+        Destroy(gameObject);  
     }
 
     // the controller hand that selects the instrument calls this function
