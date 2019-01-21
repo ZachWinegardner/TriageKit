@@ -36,9 +36,7 @@ public class valveInput : MonoBehaviour {
             if (draggableObject != null)
             {
                 draggableObject.SendMessage("Grabbed", transform, SendMessageOptions.DontRequireReceiver);          
-            }
-
-            
+            }        
         }
 
         
@@ -69,9 +67,11 @@ public class valveInput : MonoBehaviour {
         if (collision.gameObject.tag == "draggable" && draggableObject == null)
         {
             draggableObject = collision.transform;
+            draggableObject.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
             draggableObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", highlightColor);
-           
-            
+
+
+
             if (draggableObject.GetComponent<BagScript>())
             {
                 draggableObject.GetComponent<BagScript>().Touched(); 
@@ -81,8 +81,9 @@ public class valveInput : MonoBehaviour {
 
     private void OnCollisionExit(Collision collision)
     {
-        draggableObject = null;
         draggableObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.black);
+        draggableObject = null;
+
 
     }
 

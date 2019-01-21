@@ -8,7 +8,7 @@ public class IconTouch : MonoBehaviour {
 
     public Transform instrumentParent;
     public GameObject displayedInstrument;
-    public GameObject allOutMessage;     
+    public GameObject allOutMessage;   
 
     public void Grabbed(Transform hand)
     {
