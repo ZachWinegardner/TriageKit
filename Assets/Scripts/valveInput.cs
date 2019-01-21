@@ -10,7 +10,8 @@ public class valveInput : MonoBehaviour {
     private Hand hand;
     private Transform draggableObject;
     public Transform toolInHand;
-    public Transform tagInHand; 
+    public Transform tagInHand;
+    public Color highlightColor; 
     public bool holdingTag = false; 
     
 
@@ -40,6 +41,10 @@ public class valveInput : MonoBehaviour {
             
         }
 
+        
+
+
+
         if (getPinchUp())
         {
             //For letting go of bag
@@ -61,9 +66,11 @@ public class valveInput : MonoBehaviour {
     //Detect if touching object and store object
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "draggable")
+        if (collision.gameObject.tag == "draggable" && draggableObject == null)
         {
             draggableObject = collision.transform;
+            draggableObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", highlightColor);
+           
             
             if (draggableObject.GetComponent<BagScript>())
             {
@@ -74,7 +81,9 @@ public class valveInput : MonoBehaviour {
 
     private void OnCollisionExit(Collision collision)
     {
-        draggableObject = null; 
+        draggableObject = null;
+        draggableObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.black);
+
     }
 
     //private void OnCollisionStay(Collision collision)

@@ -6,7 +6,8 @@ public class instrumentSelection : MonoBehaviour {
 
     public GameObject operableInstrumentPrefab;
     public int limitQuantity;
-    private int count;
+    public int count;
+    public bool noneLeft = false; 
 
     // Use this for initialization
     void Start() {
@@ -45,7 +46,9 @@ public class instrumentSelection : MonoBehaviour {
 	void Update () {
         // if there is limited quantity then hide the instrument when used up
 		if (limitQuantity > 0 && count >= limitQuantity) {
-            gameObject.SetActive(false);
+            noneLeft = true;
+           
+
         }
 	}
 }

@@ -366,7 +366,7 @@ GameObject:
   - component: {fileID: 4555109337105850}
   - component: {fileID: 114803221013945974}
   m_Layer: 0
-  m_Name: TriageBagRoot
+  m_Name: TriageBagRoot_V1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1892,7 +1892,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popoutRoot: {fileID: 4609456115403484}
-  bagLid: {fileID: 4426063606440798}
   speed: 1.5
   popoutCurve:
     serializedVersion: 2
@@ -2007,7 +2006,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fa7864f6f35ee14bbc6c990db6b2a55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hipOffset: {x: 0, y: -0.85, z: 0}
-  adjustment: 15
-  lookThreshold: 40
+  hipAngleAdjustment: 0
   followRotation: 1
+  minHeadHieght: 0
+  maxHeadHeight: 0
+  minHip: 0
+  maxHip: 0
