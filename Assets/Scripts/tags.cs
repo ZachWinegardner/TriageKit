@@ -8,6 +8,7 @@ public class tags : MonoBehaviour {
     private Quaternion initialRotation;
     private Transform parent;
     private Vector3 localscale;
+    public bool destroy = false; 
 
     // Use this for initialization
     void Start () {
@@ -20,14 +21,15 @@ public class tags : MonoBehaviour {
     public void Grabbed(Transform hand) {
         //Debug.Log("tag " + gameObject.name + "picked up.");
         transform.SetParent(hand);
-        hand.GetComponent<valveInput>().tagInHand = transform; 
+        hand.GetComponent<valveInput>().tagInHand = transform;
+        GetComponent<SelectionHighlight>().Highlight(Color.black); 
         
 
     }
 
     public void Released() {
        // Debug.Log("tag " + gameObject.name + "dropped.");
-        gameObject.GetComponent<Rigidbody>().isKinematic = false;
+        //gameObject.GetComponent<Rigidbody>().isKinematic = false;
         transform.parent = null; 
 
         // make a new tag
@@ -37,6 +39,12 @@ public class tags : MonoBehaviour {
         newTag.transform.localScale = localscale;
         newTag.transform.localPosition = initialPosition;
         newTag.transform.localRotation = initialRotation;
+        newTag.GetComponent<SelectionHighlight>().Highlight(Color.black); 
+        if (destroy) {
+        Destroy(this.gameObject);
+        }
+        
+
 
     }
 

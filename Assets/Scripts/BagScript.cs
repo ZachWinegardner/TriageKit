@@ -28,7 +28,7 @@ public class BagScript : MonoBehaviour {
     }
     private void Update()
     {
-		if (SteamVR_Input._default.inActions.Teleport.GetStateDown(SteamVR_Input_Sources.LeftHand))
+		if (SteamVR_Input._default.inActions.Teleport.GetStateDown(SteamVR_Input_Sources.Any))
         {
             ReturnToHip();
             popout.CloseBag();
@@ -38,6 +38,13 @@ public class BagScript : MonoBehaviour {
         if (SteamVR_Input._default.inActions.GrabGrip.GetStateDown(SteamVR_Input_Sources.RightHand))
         {
             popout.OpenBag();
+        }
+
+        if (!isSeen && isOpen && transform.parent != null)
+        {
+            ReturnToHip();
+            popout.CloseBag();
+            isOpen = false;
         }
 
         //if (SteamVR_Input._default.inActions.GrabGrip.GetStateDown(SteamVR_Input_Sources.LeftHand))

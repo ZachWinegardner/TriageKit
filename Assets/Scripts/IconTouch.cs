@@ -8,7 +8,9 @@ public class IconTouch : MonoBehaviour {
 
     public Transform instrumentParent;
     public GameObject displayedInstrument;
-    public GameObject allOutMessage;   
+    public GameObject allOutMessage;
+
+    public string nameText; 
 
     public void Touched()
     {
@@ -27,6 +29,20 @@ public class IconTouch : MonoBehaviour {
         {
             displayedInstrument.SetActive(true); 
         }
+
+        ShowDetails(); 
+    }
+
+    public void ShowDetails()
+    {
+        transform.GetChild(0).gameObject.SetActive(true);
+        TextMesh text = transform.GetChild(0).gameObject.GetComponent<TextMesh>();        
+        text.text = (nameText + ": " + SuppliesManager.instance.counts[(int)displayedInstrument.GetComponent<instrumentSelection>().type].ToString());
+    }
+    public void HideDetails()
+    {
+        transform.GetChild(0).gameObject.SetActive(false); 
+
     }
 
 }

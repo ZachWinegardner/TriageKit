@@ -36,11 +36,20 @@ public class valveInput : MonoBehaviour {
             }
             else
             {
-                //Pickup if touching object (if that object is a tool, stores "toolInHand" || if tag, stores "tagInHand")
-                if (draggableObject != null)
+                if(tagInHand != null)
                 {
-                    draggableObject.SendMessage("Grabbed", transform, SendMessageOptions.DontRequireReceiver);
+                    tagInHand.SendMessage("Released", SendMessageOptions.DontRequireReceiver);
+                    tagInHand = null;
                 }
+                else
+                {
+                    //Pickup if touching object (if that object is a tool, stores "toolInHand" || if tag, stores "tagInHand")
+                    if (draggableObject != null)
+                    {
+                        draggableObject.SendMessage("Grabbed", transform, SendMessageOptions.DontRequireReceiver);
+                    }
+                }
+                
             }
 
             
@@ -52,14 +61,7 @@ public class valveInput : MonoBehaviour {
             if (draggableObject != null && toolInHand == null && tagInHand == null)
             {
                 draggableObject.SendMessage("Released", SendMessageOptions.DontRequireReceiver);                
-            }
-
-            //For letting go of tags
-            if (tagInHand != null)
-            {
-                tagInHand.SendMessage("Released", SendMessageOptions.DontRequireReceiver);
-                tagInHand = null; 
-            }
+            }           
         }
     }
     
@@ -91,7 +93,7 @@ public class valveInput : MonoBehaviour {
                 //If the bag was touched while holding a tool, that tool is "put back"
                 if (toolInHand != null)
                 {
-                    Destroy(toolInHand.gameObject);
+                    toolInHand.GetComponent<instrumentSelection>().Returned();
                 }
                 else
                 {
@@ -113,7 +115,7 @@ public class valveInput : MonoBehaviour {
         if (collision.gameObject.tag == "draggable")
         {
             collision.gameObject.GetComponent<SelectionHighlight>().Highlight(Color.black);
-
+            collision.gameObject.SendMessage("HideDetails", SendMessageOptions.DontRequireReceiver);
             //Clears draggableObject as long as the exited object is equal to draggableObj
             //Prevents newly touched object from getting cleared as draggableObj if touched while another object still touched
             if (collision.transform == draggableObject)

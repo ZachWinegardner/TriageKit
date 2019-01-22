@@ -23,6 +23,8 @@ public class SelectionHighlight : MonoBehaviour {
                 {
                     child.material.SetColor("_EmissionColor", color);
                 }
+                transform.GetComponent<Renderer>().material.SetColor("_EmissionColor", color);
+
             }
             else
             {
