@@ -10,7 +10,7 @@ public class IconTouch : MonoBehaviour {
     public GameObject displayedInstrument;
     public GameObject allOutMessage;   
 
-    public void Grabbed(Transform hand)
+    public void Touched()
     {
         int count = instrumentParent.childCount;        
         for (int i = 0; i < count; i++)

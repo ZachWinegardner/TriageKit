@@ -20,9 +20,12 @@ public class instrumentSelection : MonoBehaviour {
        
         GameObject instrument = Instantiate(operableInstrumentPrefab, transform.position, transform.rotation) as GameObject;
         instrument.transform.SetParent(hand);
-        hand.GetComponent<valveInput>().toolInHand = instrument.transform; 
+        hand.GetComponent<valveInput>().toolInHand = instrument.transform;
+       // hand.GetComponent<valveInput>().Highlighter(instrument.transform, Color.black);
         //Set position and orientation based on specific tool         
         count++;
+        gameObject.SetActive(false);
+
     }
 
     public void Released()
