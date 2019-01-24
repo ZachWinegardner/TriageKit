@@ -9,9 +9,9 @@ public class popoutInstruments : MonoBehaviour {
     public float speed;
     public AnimationCurve popoutCurve;
     public AnimationCurve retractCurve;
-    public AnimationCurve xSpreadCurve;
+    //public AnimationCurve xSpreadCurve;
     public AnimationCurve scaleCurve;
-    public AnimationCurve lidOpenCurve;
+    //public AnimationCurve lidOpenCurve;
 
 
     private Transform[] instruments;

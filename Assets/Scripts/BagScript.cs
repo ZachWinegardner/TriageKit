@@ -9,22 +9,29 @@ public class BagScript : MonoBehaviour {
     //This will handle the bag's behavior and also find if it is visible in the viewport
 
     private Transform hipParent;
-    private Vector3 hipRotation;
-    private Vector3 objViewPos;
-    public bool isOpen = false; 
-    public bool isSeen = false;
-    private popoutInstruments popout; 
+    private Vector3 objViewPos;   
+    private popoutInstruments popout;
+    private Vector3 bagHomePos;
+    private Vector3 bagHomeRotation;
 
+    public bool isOpen = false;
+    public bool isSeen = false;
     //adjustment to widen the range of view
     public float viewportRangeMax = 1f;
     public float viewportRangeMin = 0f;
+    public float lerpSpeed=1f;
+    public Vector3 openBagHipPosition;
+    public Vector3 openBagRotation;
+    public AnimationCurve bagLerpCurve; 
 
     public void Start()
     {
         hipParent = transform.parent;
-        hipRotation = transform.localEulerAngles;
+        bagHomeRotation = transform.localEulerAngles;
         popout = GetComponent<popoutInstruments>(); 
-        SetToViewport(); 
+        SetToViewport();
+        bagHomePos = transform.localPosition;
+        bagHomeRotation = transform.localEulerAngles; 
     }
     private void Update()
     {
@@ -33,6 +40,36 @@ public class BagScript : MonoBehaviour {
             ReturnToHip();
             popout.CloseBag();
             isOpen = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            StartCoroutine(BagHipLerp(openBagHipPosition, openBagRotation)); 
+        }
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            StartCoroutine(BagHipLerp(bagHomePos, bagHomeRotation));
+        }
+
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            transform.Translate(-0.05f, 0, 0); 
+        }
+        
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            transform.Translate(0.05f, 0, 0);
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            transform.Translate(0, 0, -0.05f);
+        }
+
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            transform.Translate(0, 0, 0.05f);
         }
 
         if (SteamVR_Input._default.inActions.GrabGrip.GetStateDown(SteamVR_Input_Sources.RightHand))
@@ -67,6 +104,7 @@ public class BagScript : MonoBehaviour {
         //if the bag is in view and closed, open it
         if (isSeen && !isOpen)
         {
+            StartCoroutine(BagHipLerp(openBagHipPosition, openBagRotation)); 
             popout.OpenBag();
             isOpen = true; 
         }                          
@@ -86,8 +124,7 @@ public class BagScript : MonoBehaviour {
     public void ReturnToHip()
     {
         transform.parent = hipParent;
-        transform.localPosition = Vector3.zero; 
-        transform.localEulerAngles = hipRotation;
+        StartCoroutine(BagHipLerp(bagHomePos, bagHomeRotation)); 
         popout.CloseBag();
         isOpen = false;
     }
@@ -107,5 +144,49 @@ public class BagScript : MonoBehaviour {
         }
         else return false;
 
+    }
+
+    //Call with true param for open 
+    IEnumerator BagHipLerp(Vector3 destPos, Vector3 destRotate)
+    {
+        float timer = 0;
+        Vector3 startPos = transform.localPosition;
+        Vector3 startRot = transform.localEulerAngles;
+
+        while (timer < 1.0f)
+        {
+            transform.localPosition = Vector3.Lerp(startPos, destPos, bagLerpCurve.Evaluate(timer));
+            transform.localEulerAngles = new Vector3(Mathf.Lerp(startRot.x, 17f, bagLerpCurve.Evaluate(timer)), (Mathf.Lerp(startRot.y, destRotate.y, bagLerpCurve.Evaluate(timer))), 0);
+            timer += Time.deltaTime * lerpSpeed;
+            yield return null;
+        }
+        transform.localPosition = destPos;
+        transform.localEulerAngles = new Vector3(17f, destRotate.y, 0); 
+
+        //if (state)
+        //{
+        //    while (timer < 1.0f)
+        //    {
+        //        transform.localPosition = Vector3.Lerp(closedBagHipPos, openBagHipPosition, timer);
+        //        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, (Mathf.Lerp(180f, openBagRotation, timer)), 0); 
+        //        timer += Time.deltaTime * lerpSpeed;
+        //        yield return null;
+        //    }
+        //    transform.localPosition = openBagHipPosition;
+            
+        //}
+        //else
+        //{
+        //    while (timer < 1.0f)
+        //    {
+        //        transform.localPosition = Vector3.Lerp(openBagHipPosition, closedBagHipPos, timer);
+        //        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, (Mathf.Lerp(openBagRotation, 180f, timer)), 0);
+        //        timer += Time.deltaTime * lerpSpeed;
+        //        yield return null;
+        //    }
+        //    transform.localPosition = closedBagHipPos;
+        //}
+
+         
     }
 }

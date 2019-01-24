@@ -1,0 +1,144 @@
+fileFormatVersion: 2
+guid: 27f1fd2719de3b94d8ba1eb41a350b13
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Bob:Bottoms
+    100002: Bob:Head
+    100004: Bob:L_arm
+    100006: Bob:L_eye
+    100008: Bob:L_Shoe
+    100010: Bob:Lower_teeth
+    100012: Bob:R_arm
+    100014: Bob:R_eye
+    100016: Bob:R_Shoe
+    100018: Bob:Tops
+    100020: Bob:transform1
+    100022: Bob:transform10
+    100024: Bob:transform11
+    100026: Bob:transform2
+    100028: Bob:transform3
+    100030: Bob:transform4
+    100032: Bob:transform5
+    100034: Bob:transform6
+    100036: Bob:transform7
+    100038: Bob:transform8
+    100040: Bob:transform9
+    100042: Bob:Upper_teeth
+    100044: //RootNode
+    100046: Bob_testPatient
+    400000: Bob:Bottoms
+    400002: Bob:Head
+    400004: Bob:L_arm
+    400006: Bob:L_eye
+    400008: Bob:L_Shoe
+    400010: Bob:Lower_teeth
+    400012: Bob:R_arm
+    400014: Bob:R_eye
+    400016: Bob:R_Shoe
+    400018: Bob:Tops
+    400020: Bob:transform1
+    400022: Bob:transform10
+    400024: Bob:transform11
+    400026: Bob:transform2
+    400028: Bob:transform3
+    400030: Bob:transform4
+    400032: Bob:transform5
+    400034: Bob:transform6
+    400036: Bob:transform7
+    400038: Bob:transform8
+    400040: Bob:transform9
+    400042: Bob:Upper_teeth
+    400044: //RootNode
+    400046: Bob_testPatient
+    2100000: Bob_Tori_Rig_4_StingrayPBS1
+    2100002: Bob_Body
+    2100004: Bob_Shoes
+    2100006: Bob_Top
+    2100008: Bob_StingrayPBS3
+    2300000: Bob_testPatient
+    3300000: Bob_testPatient
+    4300000: Bob_testPatient
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
