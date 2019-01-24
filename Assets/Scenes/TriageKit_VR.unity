@@ -1441,7 +1441,7 @@ Prefab:
     - target: {fileID: 114058099503402946, guid: 076ee4d5ca0abb440aea9ba23548876d,
         type: 2}
       propertyPath: isSeen
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114058099503402946, guid: 076ee4d5ca0abb440aea9ba23548876d,
         type: 2}
@@ -1511,7 +1511,7 @@ Prefab:
     - target: {fileID: 114058099503402946, guid: 076ee4d5ca0abb440aea9ba23548876d,
         type: 2}
       propertyPath: openBagHipPosition.x
-      value: -0.2
+      value: -0.22
       objectReference: {fileID: 0}
     - target: {fileID: 114058099503402946, guid: 076ee4d5ca0abb440aea9ba23548876d,
         type: 2}
@@ -1521,12 +1521,12 @@ Prefab:
     - target: {fileID: 114058099503402946, guid: 076ee4d5ca0abb440aea9ba23548876d,
         type: 2}
       propertyPath: openBagHipPosition.z
-      value: 0.07
+      value: 0.014
       objectReference: {fileID: 0}
     - target: {fileID: 114058099503402946, guid: 076ee4d5ca0abb440aea9ba23548876d,
         type: 2}
       propertyPath: openBagRotation.y
-      value: 140
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 4271912818696976, guid: 076ee4d5ca0abb440aea9ba23548876d, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -1570,7 +1570,7 @@ Prefab:
     - target: {fileID: 114058099503402946, guid: 076ee4d5ca0abb440aea9ba23548876d,
         type: 2}
       propertyPath: isOpen
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4209177024208916, guid: 076ee4d5ca0abb440aea9ba23548876d, type: 2}
       propertyPath: m_LocalPosition.y
