@@ -47,7 +47,6 @@ public class popoutInstruments : MonoBehaviour {
             instruments[i].localScale *= 0.1f;
             //StartCoroutine(PopOpen(instruments[i]));
         }
-
     }
 
     private void Update()
@@ -61,7 +60,6 @@ public class popoutInstruments : MonoBehaviour {
             CloseBag();
         }
     }
-
 
     public void OpenBag() {
         int count = popoutRoot.childCount;

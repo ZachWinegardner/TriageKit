@@ -19,7 +19,9 @@ public class instrumentSelection : MonoBehaviour {
         Needle = 6,
         Naso = 7
     }
-    public toolType type;    
+    public toolType type;
+    public Vector3 orientation;
+    public Vector3 heldPosition; 
     
     public void Grabbed(Transform hand) {
         //Debug.Log("instrument " + gameObject.name + "picked up.");
@@ -28,6 +30,8 @@ public class instrumentSelection : MonoBehaviour {
         {
             GameObject instrument = Instantiate(operableInstrumentPrefab, transform.position, transform.rotation) as GameObject;
             instrument.transform.SetParent(hand);
+            instrument.transform.localPosition = heldPosition; 
+            instrument.transform.localEulerAngles = orientation; 
             hand.GetComponent<valveInput>().toolInHand = instrument.transform;
             SuppliesManager.instance.counts[(int)type]--;
             if (SuppliesManager.instance.counts[(int)type] <= 0)

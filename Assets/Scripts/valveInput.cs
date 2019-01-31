@@ -6,7 +6,9 @@ using Valve.VR.InteractionSystem;
 
 
 public class valveInput : MonoBehaviour {
-    
+    //This script handles the hand collisions and grabbing functions
+    //It mainly sends a standard message to interactable objects to trigger unique functions, all under a ubiquitous "grabbed" method
+    //Also includes input management via Alan's "viveInput" script
     private Hand hand;
     public Transform draggableObject;
     public Transform toolInHand;
@@ -19,18 +21,21 @@ public class valveInput : MonoBehaviour {
         hand = gameObject.GetComponent<Hand>();
     }
 
+    //For grabbing, special function detects if touching, then stores touched G.O. if its tagged "Draggable"
+    //Operations in update will reference the stored touched object, named "draggableObject"
+    //Specific items, like tools and tags, will also store themselves in toolInHand, and tagInHand)
     void Update() {
        
-        //Send Grabbed message to touched object when trigger pulled
-        //Cannot pickup new objects if a tool is being held
-        //If a tools is held and trigger pulled, the tool is used/returned to bag
+        //Pulling the trigger can both pickup a new item, but also use a currently held item
+        // With an empty hand, Send Grabbed message to touched object when trigger pulled
+        // With tool in hand, Cannot pickup new objects if a tool is being held
+            //If a tools is held and trigger pulled, the tool is used/returned to bag
         if (getPinchDown())
         {
-            //if holding a tool (grabbed function on tools' instrumentSelection.cs set this variable) 
+            //if holding a tool (grabbed function on tools' instrumentSelection.cs set "toolInHand") 
             if (toolInHand != null)
             {
-                //Let go of tool
-                print("letting go of tool"); 
+                //Let go of tool                   
                 toolInHand.GetComponent<instrumentSelection>().SendMessage("Released", transform, SendMessageOptions.DontRequireReceiver);
                 toolInHand = null;
             }
@@ -43,21 +48,19 @@ public class valveInput : MonoBehaviour {
                 }
                 else
                 {
+                    //FOR EMPTY HAND
                     //Pickup if touching object (if that object is a tool, stores "toolInHand" || if tag, stores "tagInHand")
                     if (draggableObject != null)
                     {
                         draggableObject.SendMessage("Grabbed", transform, SendMessageOptions.DontRequireReceiver);
                     }
-                }
-                
-            }
-
-            
+                }                
+            }            
         }
 
         if (getPinchUp())
         {
-            //For letting go of bag
+            //For letting go of bag (will optimize to include letting go of tools upon specific condition)
             if (draggableObject != null && toolInHand == null && tagInHand == null)
             {
                 draggableObject.SendMessage("Released", SendMessageOptions.DontRequireReceiver);                
@@ -73,7 +76,7 @@ public class valveInput : MonoBehaviour {
         if (collision.gameObject.tag == "draggable" )
         {
 
-            //If there is already an object being touched, turn its highlight off
+            //If there is already an object being touched, turn its highlight off (objects have own script for hightlight, calls on that)
             if (draggableObject != null)
             {
                 draggableObject.GetComponent<SelectionHighlight>().Highlight(Color.black);  
@@ -117,91 +120,15 @@ public class valveInput : MonoBehaviour {
             collision.gameObject.GetComponent<SelectionHighlight>().Highlight(Color.black);
             collision.gameObject.SendMessage("HideDetails", SendMessageOptions.DontRequireReceiver);
             //Clears draggableObject as long as the exited object is equal to draggableObj
-            //Prevents newly touched object from getting cleared as draggableObj if touched while another object still touched
+            //If there is alread a draggableObject stored while a new object is touched, this ensures that new object will get stored as the new draggableObj
+            //Previous issues of clearing out draggableObj completely when new obj touched, would equal null instead of storing new thing
             if (collision.transform == draggableObject)
             {
                 draggableObject = null;
             }
-        } 
-
-        
+        }         
     }
-    
-    ////Called when touching an object with a trigger collider
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    //If the object is interactable
-    //    if (other.gameObject.tag == "draggable")
-    //    {
-    //        //If there is already an object being touched, turn its highlight off
-    //        if (draggableObject != null)
-    //        {
-    //            draggableObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.black);                
-    //        }
-
-    //        //Highlight the object being touched
-    //        draggableObject = other.transform;
-    //        draggableObject.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
-    //        draggableObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", highlightColor);
-
-    //        //If the touched object was the Bag, open it
-    //        if (draggableObject.GetComponent<BagScript>())
-    //        {
-    //            draggableObject.GetComponent<BagScript>().Touched();
-    //        }
-    //    }
-    //}
-
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    other.gameObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.black);
-
-    //    //Clears draggableObject as long as the exited object is equal to draggableObj
-    //    //Prevents newly touched object from getting cleared as draggableObj if touched while another object still touched
-    //    if (other.transform == draggableObject)
-    //    {
-    //        draggableObject = null; 
-    //    }
        
-        
-    //}
-
-    //private void OnCollisionExit(Collision collision)
-    //{
-    //    draggableObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.black);
-    //    draggableObject = null;
-
-
-    //}
-
-    //private void OnCollisionStay(Collision collision)
-    //{
-    //    if (collision.gameObject.tag == "draggable")
-    //    {
-    //       // Debug.Log("touching tagged object"); 
-
-    //        if (getPinchDown())
-    //        {
-    //            Debug.Log("Grabbed Object"); 
-    //        }
-
-    //    }
-    //}
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    Debug.Log("Entered trigger");
-
-    //    if (other.gameObject.tag == "draggable")
-    //    {
-    //        Debug.Log("interactive object"); 
-
-
-    //    }
-    //}
-
-
-
     public Vector2 getTrackPadPos()
     {
         // SteamVR_Action_Vector2 trackpadPos = SteamVR_Input._default.inActions.TouchPos;

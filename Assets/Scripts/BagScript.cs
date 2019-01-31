@@ -118,7 +118,6 @@ public class BagScript : MonoBehaviour {
     public void Released()
     {
         transform.parent = null;
-
     }
 
     public void ReturnToHip()
@@ -146,7 +145,7 @@ public class BagScript : MonoBehaviour {
 
     }
 
-    //Call with true param for open 
+    //Call with position of where you want bag to lerp to
     IEnumerator BagHipLerp(Vector3 destPos, Vector3 destRotate)
     {
         float timer = 0;
@@ -162,31 +161,5 @@ public class BagScript : MonoBehaviour {
         }
         transform.localPosition = destPos;
         transform.localEulerAngles = new Vector3(17f, destRotate.y, 0); 
-
-        //if (state)
-        //{
-        //    while (timer < 1.0f)
-        //    {
-        //        transform.localPosition = Vector3.Lerp(closedBagHipPos, openBagHipPosition, timer);
-        //        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, (Mathf.Lerp(180f, openBagRotation, timer)), 0); 
-        //        timer += Time.deltaTime * lerpSpeed;
-        //        yield return null;
-        //    }
-        //    transform.localPosition = openBagHipPosition;
-            
-        //}
-        //else
-        //{
-        //    while (timer < 1.0f)
-        //    {
-        //        transform.localPosition = Vector3.Lerp(openBagHipPosition, closedBagHipPos, timer);
-        //        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, (Mathf.Lerp(openBagRotation, 180f, timer)), 0);
-        //        timer += Time.deltaTime * lerpSpeed;
-        //        yield return null;
-        //    }
-        //    transform.localPosition = closedBagHipPos;
-        //}
-
-         
     }
 }
