@@ -14,7 +14,11 @@ public class valveInput : MonoBehaviour {
     public Transform toolInHand;
     public Transform tagInHand;
     public Color highlightColor; 
-    public bool holdingTag = false; 
+    public bool holdingTag = false;
+    public bool pinchHold = false;
+    public bool releaseOnPinch = false; 
+
+    private bool bagTouch = false; 
     
 
 	void Start () {
@@ -32,40 +36,79 @@ public class valveInput : MonoBehaviour {
             //If a tools is held and trigger pulled, the tool is used/returned to bag
         if (getPinchDown())
         {
-            //if holding a tool (grabbed function on tools' instrumentSelection.cs set "toolInHand") 
-            if (toolInHand != null)
+            pinchHold = true; 
+            if (!releaseOnPinch)
             {
-                //Let go of tool                   
-                toolInHand.GetComponent<instrumentSelection>().SendMessage("Released", transform, SendMessageOptions.DontRequireReceiver);
-                toolInHand = null;
-            }
-            else
-            {
-                if(tagInHand != null)
+                StartCoroutine(HoldingPinch());
+                //if holding a tool (grabbed function on tools' instrumentSelection.cs set "toolInHand") 
+                if (toolInHand != null)
                 {
-                    tagInHand.SendMessage("Released", SendMessageOptions.DontRequireReceiver);
-                    tagInHand = null;
+                    //Let go of tool                   
+                    toolInHand.GetComponent<instrumentSelection>().SendMessage("Released", transform, SendMessageOptions.DontRequireReceiver);
+                    toolInHand = null;
                 }
                 else
                 {
-                    //FOR EMPTY HAND
-                    //Pickup if touching object (if that object is a tool, stores "toolInHand" || if tag, stores "tagInHand")
-                    if (draggableObject != null)
+                    if (tagInHand != null)
                     {
-                        draggableObject.SendMessage("Grabbed", transform, SendMessageOptions.DontRequireReceiver);
+                        tagInHand.SendMessage("Released", SendMessageOptions.DontRequireReceiver);
+                        tagInHand = null;
                     }
-                }                
-            }            
+                    else
+                    {
+                        //FOR EMPTY HAND
+                        //Pickup if touching object (if that object is a tool, stores "toolInHand" || if tag, stores "tagInHand")
+                        if (draggableObject != null)
+                        {
+                            draggableObject.SendMessage("Grabbed", transform, SendMessageOptions.DontRequireReceiver);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                //dependent on release on pinch
+
+            }
+                       
         }
 
         if (getPinchUp())
         {
+            pinchHold = false; 
             //For letting go of bag (will optimize to include letting go of tools upon specific condition)
             if (draggableObject != null && toolInHand == null && tagInHand == null)
             {
                 draggableObject.SendMessage("Released", SendMessageOptions.DontRequireReceiver);                
-            }           
-        }
+            }   
+            
+            if (releaseOnPinch)
+            {
+                if (toolInHand != null)
+                {
+                    //Let go of tool                   
+                    toolInHand.GetComponent<instrumentSelection>().SendMessage("Released", transform, SendMessageOptions.DontRequireReceiver);
+                    toolInHand = null;
+                }
+                else
+                {
+                    if (tagInHand != null)
+                    {
+                        tagInHand.SendMessage("Released", SendMessageOptions.DontRequireReceiver);
+                        tagInHand = null;
+                    }
+                    else
+                    {
+                        //FOR EMPTY HAND
+                        //Pickup if touching object (if that object is a tool, stores "toolInHand" || if tag, stores "tagInHand")
+                        if (draggableObject != null)
+                        {
+                            draggableObject.SendMessage("Grabbed", transform, SendMessageOptions.DontRequireReceiver);
+                        }
+                    }
+                }
+            }
+        }       
     }
     
 
@@ -100,7 +143,9 @@ public class valveInput : MonoBehaviour {
                 }
                 else
                 {
-                    draggableObject.GetComponent<BagScript>().Touched();
+                    //draggableObject.GetComponent<BagScript>().Touched();
+                    bagTouch = true;
+                    StartCoroutine(TouchBag()); 
                 }
             }
 
@@ -117,6 +162,7 @@ public class valveInput : MonoBehaviour {
         //Deselect the exited object
         if (collision.gameObject.tag == "draggable")
         {
+            bagTouch = false; 
             collision.gameObject.GetComponent<SelectionHighlight>().Highlight(Color.black);
             collision.gameObject.SendMessage("HideDetails", SendMessageOptions.DontRequireReceiver);
             //Clears draggableObject as long as the exited object is equal to draggableObj
@@ -127,6 +173,35 @@ public class valveInput : MonoBehaviour {
                 draggableObject = null;
             }
         }         
+    }
+
+    IEnumerator TouchBag()
+    {
+        float timer = 0.5f;
+        while (bagTouch && timer > 0f)
+        {
+            timer-=Time.deltaTime;
+            yield return null; 
+        }
+        if (timer <= 0f)
+        {
+            draggableObject.GetComponent<BagScript>().Touched();
+
+        }
+    }
+
+    IEnumerator HoldingPinch()
+    {
+        float timer = 1.5f;
+        while (pinchHold && timer > 0f)
+        {
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+        if (timer <= 0f)
+        {
+            releaseOnPinch = true; 
+        }
     }
        
     public Vector2 getTrackPadPos()
