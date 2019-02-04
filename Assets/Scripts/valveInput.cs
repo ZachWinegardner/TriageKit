@@ -75,7 +75,7 @@ public class valveInput : MonoBehaviour {
 
         if (getPinchUp())
         {
-            pinchHold = false; 
+            pinchHold = false;
             //For letting go of bag (will optimize to include letting go of tools upon specific condition)
             if (draggableObject != null && toolInHand == null && tagInHand == null)
             {
@@ -107,6 +107,9 @@ public class valveInput : MonoBehaviour {
                         }
                     }
                 }
+
+                releaseOnPinch = false;
+
             }
         }       
     }
@@ -149,6 +152,11 @@ public class valveInput : MonoBehaviour {
                 }
             }
 
+            if (draggableObject.name.Contains("tag"))
+            {
+                draggableObject.SendMessage("Touched", SendMessageOptions.DontRequireReceiver); 
+            }
+
             //If the touched object was a UI icon
             if (draggableObject.GetComponent<IconTouch>())
             {
@@ -177,7 +185,7 @@ public class valveInput : MonoBehaviour {
 
     IEnumerator TouchBag()
     {
-        float timer = 0.5f;
+        float timer = 0.3f;
         while (bagTouch && timer > 0f)
         {
             timer-=Time.deltaTime;

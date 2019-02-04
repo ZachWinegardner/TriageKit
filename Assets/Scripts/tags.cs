@@ -8,7 +8,9 @@ public class tags : MonoBehaviour {
     private Quaternion initialRotation;
     private Transform parent;
     private Vector3 localscale;
-    public bool destroy = false; 
+    public bool destroy = false;
+    public Transform iconParent;
+    public GameObject tagDisplay; 
 
     // Use this for initialization
     void Start () {
@@ -24,6 +26,17 @@ public class tags : MonoBehaviour {
         hand.GetComponent<valveInput>().tagInHand = transform;
         GetComponent<SelectionHighlight>().Highlight(Color.black); 
         
+
+    }
+
+    public void Touched()
+    {
+        int count = iconParent.childCount;
+        for (int i = 0; i < count; i++)
+        {
+            iconParent.GetChild(i).gameObject.SetActive(false);
+        }
+        tagDisplay.SetActive(true); 
 
     }
 

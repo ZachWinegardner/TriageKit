@@ -44,7 +44,7 @@ public class IconTouch : MonoBehaviour {
 
     public void ShowDetails()
     {
-        //suppliesText.gameObject.SetActive(true);        
+        suppliesText.gameObject.SetActive(true);        
         suppliesText.text = (nameText + ": " + SuppliesManager.instance.counts[(int)displayedInstrument.GetComponent<instrumentSelection>().type].ToString());
     }
     public void HideDetails()

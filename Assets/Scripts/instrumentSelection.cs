@@ -5,6 +5,7 @@ using UnityEngine;
 public class instrumentSelection : MonoBehaviour {
 
     public GameObject operableInstrumentPrefab;
+    public BagScript bag; 
     //public int limitQuantity;
     //public int count;   
     public bool noneLeft = false;
@@ -20,8 +21,8 @@ public class instrumentSelection : MonoBehaviour {
         Naso = 7
     }
     public toolType type;
+    public Vector3 heldPosition;
     public Vector3 orientation;
-    public Vector3 heldPosition; 
     
     public void Grabbed(Transform hand) {
         //Debug.Log("instrument " + gameObject.name + "picked up.");
@@ -38,6 +39,7 @@ public class instrumentSelection : MonoBehaviour {
             {
                 noneLeft = true;
             }
+            instrument.GetComponent<instrumentSelection>().StartCoroutine(CalculateDist(instrument.transform)); 
             //SuppliesManager.instance.SetText();
             gameObject.SetActive(false);
         }
@@ -45,13 +47,25 @@ public class instrumentSelection : MonoBehaviour {
         {
             print("out of that instrument");
             //SuppliesManager.instance.texts[typeIndexer].text = "None Remaining"; 
-        }
-         
-
-
-        //Set position and orientation based on specific tool                                
+        }         
     }
+  
+    IEnumerator CalculateDist(Transform tool)
+    {
+        float distance = Vector3.Distance(tool.position, bag.transform.position); 
 
+        while(distance < 0.7f)
+        {
+            distance = Vector3.Distance(tool.position, bag.transform.position);
+            yield return null;                
+        }
+
+        if (distance >= 0.7f)
+        {
+            print("tool far enough away");
+            bag.ReturnToHip(); 
+        }
+    }
     //public void ToggleVis(bool state)
     //{
     //    if (transform.childCount > 0)
@@ -95,9 +109,5 @@ public class instrumentSelection : MonoBehaviour {
     //}
    
 
-    // Update is called once per frame
-    void Update () {
-        // if there is limited quantity then hide the instrument when used up		
-        
-	}
+   
 }
