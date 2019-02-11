@@ -1437,6 +1437,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1370b10c40a35b40813644bd48a607c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroy: 0
+  iconParent: {fileID: 0}
+  tagDisplay: {fileID: 0}
 --- !u!114 &114170442311929896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1448,6 +1451,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1370b10c40a35b40813644bd48a607c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroy: 0
+  iconParent: {fileID: 0}
+  tagDisplay: {fileID: 0}
 --- !u!114 &114267188760073566
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1459,6 +1465,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1370b10c40a35b40813644bd48a607c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroy: 0
+  iconParent: {fileID: 0}
+  tagDisplay: {fileID: 0}
 --- !u!114 &114451656254549456
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1470,6 +1479,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1370b10c40a35b40813644bd48a607c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroy: 0
+  iconParent: {fileID: 0}
+  tagDisplay: {fileID: 0}
 --- !u!114 &114526481235946546
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1481,6 +1493,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1370b10c40a35b40813644bd48a607c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroy: 0
+  iconParent: {fileID: 0}
+  tagDisplay: {fileID: 0}
 --- !u!114 &114930317490383794
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1493,7 +1508,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popoutRoot: {fileID: 4125906861904836}
-  bagLid: {fileID: 0}
   speed: 1
   popoutCurve:
     serializedVersion: 2
@@ -1543,19 +1557,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  xSpreadCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   scaleCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  lidOpenCurve:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
