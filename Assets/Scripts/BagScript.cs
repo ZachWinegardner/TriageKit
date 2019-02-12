@@ -136,11 +136,11 @@ public class BagScript : MonoBehaviour {
         while (timer < 1.0f)
         {
             transform.localPosition = Vector3.Lerp(startPos, destPos, bagLerpCurve.Evaluate(timer));
-            transform.localEulerAngles = new Vector3(Mathf.Lerp(startRot.x, 17f, bagLerpCurve.Evaluate(timer)), (Mathf.Lerp(startRot.y, destRotate.y, bagLerpCurve.Evaluate(timer))), 0);
+            transform.localEulerAngles = new Vector3(Mathf.Lerp(startRot.x, startRot.y, bagLerpCurve.Evaluate(timer)), (Mathf.Lerp(startRot.y, destRotate.y, bagLerpCurve.Evaluate(timer))), 0);
             timer += Time.deltaTime * lerpSpeed;
             yield return null;
         }
         transform.localPosition = destPos;
-        transform.localEulerAngles = new Vector3(17f, destRotate.y, 0); 
+        transform.localEulerAngles = new Vector3(startRot.y, destRotate.y, 0); 
     }
 }
