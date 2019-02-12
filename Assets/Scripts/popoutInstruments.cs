@@ -6,13 +6,12 @@ using Valve.VR;
 public class popoutInstruments : MonoBehaviour {
 
     public Transform popoutRoot;
+    public Transform bagLid; 
     public float speed;
     public AnimationCurve popoutCurve;
     public AnimationCurve retractCurve;
-    //public AnimationCurve xSpreadCurve;
     public AnimationCurve scaleCurve;
-    //public AnimationCurve lidOpenCurve;
-
+    public AnimationCurve lidOpenCurve;
 
     private Transform[] instruments;
     private Vector3[] positions;
@@ -26,8 +25,8 @@ public class popoutInstruments : MonoBehaviour {
     void Start () {
         //Find the bag lid, and set its rotation to zero
         //Also stores position it starts in, may not use
-        //lidRotationDest = bagLid.localEulerAngles;
-       // bagLid.localEulerAngles = Vector3.zero; 
+        lidRotationDest = bagLid.localEulerAngles;
+        bagLid.localEulerAngles = Vector3.zero; 
 
 
         //Store all the transform info for any parented tools, then set their starting pos and scale
@@ -92,7 +91,8 @@ public class popoutInstruments : MonoBehaviour {
         while (lerper < 1.0f) {
             instrument.localPosition = Vector3.Lerp(startPos, destPos, popoutCurve.Evaluate(lerper));
             instrument.localScale = Vector3.Lerp(startScale,destScale, scaleCurve.Evaluate(lerper));
-           // bagLid.localEulerAngles = new Vector3(Mathf.Lerp(0, -90, lidOpenCurve.Evaluate(lerper)), 0, 0); 
+            bagLid.localEulerAngles = new Vector3(Mathf.Lerp(0, -70, lidOpenCurve.Evaluate(lerper)), 0, 0);
+            bagLid.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, (Mathf.Lerp(0f, 100f, lidOpenCurve.Evaluate(lerper))));
             lerper += Time.deltaTime * speed;
             yield return null;
         }
@@ -115,7 +115,9 @@ public class popoutInstruments : MonoBehaviour {
 
             instrument.localPosition = Vector3.Lerp(startPos, destPos, popoutCurve.Evaluate(lerper));
             instrument.localScale = Vector3.Lerp(startScale, destScale, popoutCurve.Evaluate(lerper));
-            //bagLid.localEulerAngles = new Vector3(Mathf.Lerp(-90, 0, lidOpenCurve.Evaluate(lerper)), 0, 0);
+            bagLid.localEulerAngles = new Vector3(Mathf.Lerp(-70, 0, lidOpenCurve.Evaluate(lerper)), 0, 0);
+            bagLid.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, (Mathf.Lerp(100f, 0f, lidOpenCurve.Evaluate(lerper))));
+
             lerper += Time.deltaTime * speed;
             yield return null;
         }

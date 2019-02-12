@@ -10,24 +10,18 @@ public class valveInput : MonoBehaviour {
     //It mainly sends a standard message to interactable objects to trigger unique functions, all under a ubiquitous "grabbed" method
     //Also includes input management via Alan's "viveInput" script
     private Hand hand;
-    public Transform draggableObject;
-    public Transform toolInHand;
-    public Transform tagInHand;
-    public Color highlightColor; 
-    public bool holdingTag = false;
+    public Transform draggableObject;    
+    public Transform objectHeld; 
     public bool pinchHold = false;
-    public bool releaseOnPinch = false; 
-
-    private bool bagTouch = false; 
+    public bool releaseOnPinchUp = false; 
     
-
 	void Start () {
         hand = gameObject.GetComponent<Hand>();
     }
 
     //For grabbing, special function detects if touching, then stores touched G.O. if its tagged "Draggable"
-    //Operations in update will reference the stored touched object, named "draggableObject"
-    //Specific items, like tools and tags, will also store themselves in toolInHand, and tagInHand)
+    //Operations in update will reference that stored touched object, named "draggableObject"
+    //Specific items, like tools and tags, will also store themselves as "objectHeld" if grabbed)
     void Update() {
        
         //Pulling the trigger can both pickup a new item, but also use a currently held item
@@ -36,79 +30,49 @@ public class valveInput : MonoBehaviour {
             //If a tools is held and trigger pulled, the tool is used/returned to bag
         if (getPinchDown())
         {
-            pinchHold = true; 
-            if (!releaseOnPinch)
+           
+            if (!releaseOnPinchUp)
             {
+                //For holding trigger to grasp objects (if held for 1 second, switches release condition)
                 StartCoroutine(HoldingPinch());
-                //if holding a tool (grabbed function on tools' instrumentSelection.cs set "toolInHand") 
-                if (toolInHand != null)
+
+                //if holding something already, release that thing 
+                if (objectHeld != null)
                 {
-                    //Let go of tool                   
-                    toolInHand.GetComponent<instrumentSelection>().SendMessage("Released", transform, SendMessageOptions.DontRequireReceiver);
-                    toolInHand = null;
+                    Send(objectHeld, "Released");
+                    objectHeld = null;
                 }
                 else
                 {
-                    if (tagInHand != null)
+                    //FOR EMPTY HAND
+                    //Pickup if touching object (stores tools and tags as "objectHeld")
+                    if (draggableObject != null)
                     {
-                        tagInHand.SendMessage("Released", SendMessageOptions.DontRequireReceiver);
-                        tagInHand = null;
-                    }
-                    else
-                    {
-                        //FOR EMPTY HAND
-                        //Pickup if touching object (if that object is a tool, stores "toolInHand" || if tag, stores "tagInHand")
-                        if (draggableObject != null)
-                        {
-                            draggableObject.SendMessage("Grabbed", transform, SendMessageOptions.DontRequireReceiver);
-                        }
+                        Send(draggableObject, "Grabbed");
                     }
                 }
-            }
-            else
-            {
-                //dependent on release on pinch
-
-            }
-                       
+            }                                 
         }
 
         if (getPinchUp())
         {
-            pinchHold = false;
+            StopCoroutine(HoldingPinch()); 
+
             //For letting go of bag (will optimize to include letting go of tools upon specific condition)
-            if (draggableObject != null && toolInHand == null && tagInHand == null)
+            if (draggableObject != null && objectHeld == null)
             {
-                draggableObject.SendMessage("Released", SendMessageOptions.DontRequireReceiver);                
+                Send(draggableObject, "Released");                 
             }   
             
-            if (releaseOnPinch)
+            if (releaseOnPinchUp)
             {
-                if (toolInHand != null)
+                if (objectHeld != null)
                 {
-                    //Let go of tool                   
-                    toolInHand.GetComponent<instrumentSelection>().SendMessage("Released", transform, SendMessageOptions.DontRequireReceiver);
-                    toolInHand = null;
-                }
-                else
-                {
-                    if (tagInHand != null)
-                    {
-                        tagInHand.SendMessage("Released", SendMessageOptions.DontRequireReceiver);
-                        tagInHand = null;
-                    }
-                    else
-                    {
-                        //FOR EMPTY HAND
-                        //Pickup if touching object (if that object is a tool, stores "toolInHand" || if tag, stores "tagInHand")
-                        if (draggableObject != null)
-                        {
-                            draggableObject.SendMessage("Grabbed", transform, SendMessageOptions.DontRequireReceiver);
-                        }
-                    }
-                }
-
-                releaseOnPinch = false;
+                    //Let go of thing in hand (for pinch holding logic)                   
+                    Send(objectHeld, "Released");
+                    objectHeld = null;
+                }               
+                releaseOnPinchUp = false;
 
             }
         }       
@@ -125,43 +89,16 @@ public class valveInput : MonoBehaviour {
             //If there is already an object being touched, turn its highlight off (objects have own script for hightlight, calls on that)
             if (draggableObject != null)
             {
-                draggableObject.GetComponent<SelectionHighlight>().Highlight(Color.black);  
+                Send(draggableObject, "Touched", false); 
             }
 
             //Set the newly touched object and highlight it as long as there's no tool in hand or if you touch the bag
-            if (toolInHand == null || collision.gameObject.name.Contains("Bag"))
+            if (objectHeld == null || collision.gameObject.name.Contains("Bag"))
             {
                 draggableObject = collision.transform;
-                draggableObject.GetComponent<SelectionHighlight>().Highlight(highlightColor);
-            }
-            
-
-            //If the touched object was the Bag, open it
-            if (draggableObject.GetComponent<BagScript>())
-            {
-                //If the bag was touched while holding a tool, that tool is "put back"
-                if (toolInHand != null)
-                {
-                    toolInHand.GetComponent<instrumentSelection>().Returned();
-                }
-                else
-                {
-                    //draggableObject.GetComponent<BagScript>().Touched();
-                    bagTouch = true;
-                    StartCoroutine(TouchBag()); 
-                }
-            }
-
-            if (draggableObject.name.Contains("tag"))
-            {
-                draggableObject.SendMessage("Touched", SendMessageOptions.DontRequireReceiver); 
-            }
-
-            //If the touched object was a UI icon
-            if (draggableObject.GetComponent<IconTouch>())
-            {
-                draggableObject.GetComponent<IconTouch>().Touched(); 
-            }
+                Send(draggableObject, "Touched", true);
+                print("touched thing"); 
+            }           
         }
     }
 
@@ -170,9 +107,9 @@ public class valveInput : MonoBehaviour {
         //Deselect the exited object
         if (collision.gameObject.tag == "draggable")
         {
-            bagTouch = false; 
-            collision.gameObject.GetComponent<SelectionHighlight>().Highlight(Color.black);
-            collision.gameObject.SendMessage("HideDetails", SendMessageOptions.DontRequireReceiver);
+
+            Send(draggableObject, "Touched", false); 
+
             //Clears draggableObject as long as the exited object is equal to draggableObj
             //If there is alread a draggableObject stored while a new object is touched, this ensures that new object will get stored as the new draggableObj
             //Previous issues of clearing out draggableObj completely when new obj touched, would equal null instead of storing new thing
@@ -182,36 +119,31 @@ public class valveInput : MonoBehaviour {
             }
         }         
     }
-
-    IEnumerator TouchBag()
-    {
-        float timer = 0.3f;
-        while (bagTouch && timer > 0f)
-        {
-            timer-=Time.deltaTime;
-            yield return null; 
-        }
-        if (timer <= 0f)
-        {
-            draggableObject.GetComponent<BagScript>().Touched();
-
-        }
-    }
-
+   
     IEnumerator HoldingPinch()
     {
-        float timer = 1.5f;
-        while (pinchHold && timer > 0f)
+        float timer = 1f;
+        while (timer > 0f)
         {
             timer -= Time.deltaTime;
             yield return null;
         }
         if (timer <= 0f)
         {
-            releaseOnPinch = true; 
+            releaseOnPinchUp = true; 
         }
     }
-       
+
+    void Send(Transform thing, string command)
+    {
+        thing.SendMessage(command, SendMessageOptions.DontRequireReceiver); 
+    }
+
+    void Send(Transform thing, string command, bool state)
+    {
+        thing.SendMessage(command, state, SendMessageOptions.DontRequireReceiver);        
+    }
+
     public Vector2 getTrackPadPos()
     {
         // SteamVR_Action_Vector2 trackpadPos = SteamVR_Input._default.inActions.TouchPos;

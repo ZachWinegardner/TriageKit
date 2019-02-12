@@ -328,7 +328,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1377982826}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!114 &95507720
 MonoBehaviour:
@@ -358,6 +358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 1
+  highlightColor: {r: 0.7830189, g: 0.6434389, b: 0, a: 1}
 --- !u!54 &95507722
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -456,13 +457,13 @@ Transform:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 104026633}
-  m_LocalRotation: {x: -0.5735764, y: 0, z: 0, w: 0.8191521}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0.08323378, z: -0.1143}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1377982826}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -70, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &104026635
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -506,7 +507,7 @@ SkinnedMeshRenderer:
   m_Mesh: {fileID: 4300002, guid: b4d314c54dc0a58489b41b90c99b9ee6, type: 3}
   m_Bones: []
   m_BlendShapeWeights:
-  - 100
+  - 0
   m_RootBone: {fileID: 0}
   m_AABB:
     m_Center: {x: 0, y: 0.06450128, z: 0.09887973}
@@ -785,10 +786,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9cc55c8c35d0e844987832301c11620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  operableInstrumentPrefab: {fileID: 1480864720589322, guid: 85aced8b3fcea3246af59318b7847961,
-    type: 2}
   bag: {fileID: 0}
-  noneLeft: 0
+  icon: {fileID: 0}
+  UI: {fileID: 0}
   type: 0
   heldPosition: {x: 0, y: 0, z: 0}
   orientation: {x: 0, y: 0, z: 0}
@@ -840,6 +840,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 1
+  highlightColor: {r: 0.7830189, g: 0.6434389, b: 0, a: 1}
 --- !u!54 &371852263
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -881,11 +882,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d528455dc6d4854f836bf5621a632a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instrumentParent: {fileID: 0}
-  displayedInstrument: {fileID: 0}
-  allOutMessage: {fileID: 0}
-  suppliesText: {fileID: 2019578451}
-  nameText: Naso Airway
+  operableInstrumentPrefab: {fileID: 0}
+  UI: {fileID: 0}
+  noneLeft: 0
 --- !u!212 &371852266
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -950,6 +949,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popoutRoot: {fileID: 505875445}
+  bagLid: {fileID: 0}
   speed: 1
   popoutCurve:
     serializedVersion: 2
@@ -1005,6 +1005,12 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  lidOpenCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &404767518
 GameObject:
   m_ObjectHideFlags: 0
@@ -1053,6 +1059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 1
+  highlightColor: {r: 0.7830189, g: 0.6434389, b: 0, a: 1}
 --- !u!54 &404767521
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1094,11 +1101,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d528455dc6d4854f836bf5621a632a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instrumentParent: {fileID: 0}
-  displayedInstrument: {fileID: 0}
-  allOutMessage: {fileID: 0}
-  suppliesText: {fileID: 2019578451}
-  nameText: Needle
+  operableInstrumentPrefab: {fileID: 0}
+  UI: {fileID: 0}
+  noneLeft: 0
 --- !u!212 &404767524
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1178,12 +1183,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   draggableObject: {fileID: 0}
-  toolInHand: {fileID: 0}
-  tagInHand: {fileID: 0}
-  highlightColor: {r: 0.59607846, g: 0.5411765, b: 0, a: 1}
-  holdingTag: 0
+  objectHeld: {fileID: 0}
   pinchHold: 0
-  releaseOnPinch: 0
+  releaseOnPinchUp: 0
 --- !u!4 &416466178 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 476540, guid: dc06161b6d97feb419f45f03b62e14b9,
@@ -1211,12 +1213,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   draggableObject: {fileID: 0}
-  toolInHand: {fileID: 0}
-  tagInHand: {fileID: 0}
-  highlightColor: {r: 0.59607846, g: 0.5411765, b: 0, a: 1}
-  holdingTag: 0
+  objectHeld: {fileID: 0}
   pinchHold: 0
-  releaseOnPinch: 0
+  releaseOnPinchUp: 0
 --- !u!54 &439910575
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1285,6 +1284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 1
+  highlightColor: {r: 0.7830189, g: 0.6434389, b: 0, a: 1}
 --- !u!54 &562032582
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1326,11 +1326,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d528455dc6d4854f836bf5621a632a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instrumentParent: {fileID: 0}
-  displayedInstrument: {fileID: 0}
-  allOutMessage: {fileID: 0}
-  suppliesText: {fileID: 2019578451}
-  nameText: Tourniquet
+  operableInstrumentPrefab: {fileID: 0}
+  UI: {fileID: 0}
+  noneLeft: 0
 --- !u!212 &562032585
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1426,6 +1424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 1
+  highlightColor: {r: 0.7830189, g: 0.6434389, b: 0, a: 1}
 --- !u!54 &608166489
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1467,11 +1466,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d528455dc6d4854f836bf5621a632a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instrumentParent: {fileID: 0}
-  displayedInstrument: {fileID: 0}
-  allOutMessage: {fileID: 0}
-  suppliesText: {fileID: 2019578451}
-  nameText: Occlusive
+  operableInstrumentPrefab: {fileID: 0}
+  UI: {fileID: 0}
+  noneLeft: 0
 --- !u!212 &608166492
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1639,7 +1636,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1377982826}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: -90, y: 22.000002, z: 0}
 --- !u!114 &796954186
 MonoBehaviour:
@@ -1669,6 +1666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 1
+  highlightColor: {r: 0.7830189, g: 0.6434389, b: 0, a: 1}
 --- !u!54 &796954188
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1758,10 +1756,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9cc55c8c35d0e844987832301c11620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  operableInstrumentPrefab: {fileID: 1480864720589322, guid: 85aced8b3fcea3246af59318b7847961,
-    type: 2}
   bag: {fileID: 0}
-  noneLeft: 0
+  icon: {fileID: 0}
+  UI: {fileID: 0}
   type: 0
   heldPosition: {x: 0, y: 0, z: 0}
   orientation: {x: 0, y: 0, z: 0}
@@ -1781,13 +1778,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9cc55c8c35d0e844987832301c11620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  operableInstrumentPrefab: {fileID: 1480864720589322, guid: 85aced8b3fcea3246af59318b7847961,
-    type: 2}
   bag: {fileID: 0}
-  noneLeft: 0
+  icon: {fileID: 0}
+  UI: {fileID: 0}
   type: 0
   heldPosition: {x: 0, y: 0, z: 0}
   orientation: {x: 0, y: 0, z: 0}
+--- !u!1 &1126819309
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1126819310}
+  m_Layer: 0
+  m_Name: FeatureItemPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1126819310
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1126819309}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.146, z: -0.047}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1377982826}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1139615090
 GameObject:
   m_ObjectHideFlags: 0
@@ -1918,6 +1942,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popoutRoot: {fileID: 1522154702}
+  bagLid: {fileID: 0}
   speed: 1.2
   popoutCurve:
     serializedVersion: 2
@@ -1991,6 +2016,12 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  lidOpenCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &1153503368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2004,6 +2035,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 1
+  highlightColor: {r: 0.7830189, g: 0.6434389, b: 0, a: 1}
 --- !u!54 &1153503369
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2111,7 +2143,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1377982826}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: -90, y: -45, z: 0}
 --- !u!114 &1190830735
 MonoBehaviour:
@@ -2141,6 +2173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 1
+  highlightColor: {r: 0.7830189, g: 0.6434389, b: 0, a: 1}
 --- !u!54 &1190830737
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2328,7 +2361,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1377982826}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1377982825
 GameObject:
@@ -2345,6 +2378,8 @@ GameObject:
   - component: {fileID: 1377982829}
   - component: {fileID: 1377982828}
   - component: {fileID: 1377982827}
+  - component: {fileID: 1377982833}
+  - component: {fileID: 1377982834}
   m_Layer: 0
   m_Name: Shaped_Bag
   m_TagString: draggable
@@ -2365,6 +2400,7 @@ Transform:
   m_Children:
   - {fileID: 104026634}
   - {fileID: 1831048917}
+  - {fileID: 1126819310}
   - {fileID: 1303198199}
   - {fileID: 1190830734}
   - {fileID: 95507719}
@@ -2390,7 +2426,7 @@ MonoBehaviour:
   isSeen: 0
   viewportRangeMax: 1
   viewportRangeMin: 0
-  lerpSpeed: 1
+  lerpSpeed: 1.5
   openBagHipPosition: {x: 0, y: 0, z: 0}
   openBagRotation: {x: 0, y: 0, z: 0}
   bagLerpCurve:
@@ -2405,15 +2441,6 @@ MonoBehaviour:
       weightedMode: 0
       inWeight: 0
       outWeight: 0
-    - serializedVersion: 3
-      time: 0.5515053
-      value: 0.88812995
-      inSlope: 0.5828441
-      outSlope: 0.5828441
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.4436272
     - serializedVersion: 3
       time: 1
       value: 1
@@ -2438,6 +2465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 1
+  highlightColor: {r: 0.8396226, g: 0.62686366, b: 0, a: 1}
 --- !u!114 &1377982829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2504,6 +2532,131 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1377982833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1377982825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b5a53b0f7b698c4a940de5b75d7d71b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  featuredInstrument: {fileID: 0}
+  featureLocation: {fileID: 1126819310}
+  text: {fileID: 2019578451}
+  prefabStats: {fileID: 0}
+--- !u!114 &1377982834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1377982825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c427c295b8d50ba4ab0be8a89ebe67a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popoutRoot: {fileID: 1522154702}
+  bagLid: {fileID: 104026634}
+  speed: 1.2
+  popoutCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1.9099911
+      outSlope: 1.9099911
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.060879365
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  retractCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  scaleCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.037417404
+      outSlope: 0.037417404
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33468688
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  lidOpenCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1395721412 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1942411254684770, guid: 710d1c80ed2acf94585ef7c6b828961e,
@@ -2520,10 +2673,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9cc55c8c35d0e844987832301c11620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  operableInstrumentPrefab: {fileID: 1480864720589322, guid: 85aced8b3fcea3246af59318b7847961,
-    type: 2}
   bag: {fileID: 0}
-  noneLeft: 0
+  icon: {fileID: 0}
+  UI: {fileID: 0}
   type: 0
   heldPosition: {x: 0, y: 0, z: 0}
   orientation: {x: 0, y: 0, z: 0}
@@ -2561,7 +2713,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1377982826}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: -90, y: -22, z: 0}
 --- !u!114 &1427985511
 MonoBehaviour:
@@ -2591,6 +2743,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 1
+  highlightColor: {r: 0.7830189, g: 0.6434389, b: 0, a: 1}
 --- !u!54 &1427985513
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2787,10 +2940,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9cc55c8c35d0e844987832301c11620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  operableInstrumentPrefab: {fileID: 1480864720589322, guid: 85aced8b3fcea3246af59318b7847961,
-    type: 2}
   bag: {fileID: 0}
-  noneLeft: 0
+  icon: {fileID: 0}
+  UI: {fileID: 0}
   type: 0
   heldPosition: {x: 0, y: 0, z: 0}
   orientation: {x: 0, y: 0, z: 0}
@@ -2903,7 +3055,7 @@ Transform:
   - {fileID: 371852261}
   - {fileID: 2019578453}
   m_Father: {fileID: 1377982826}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1572093774
 GameObject:
@@ -3231,6 +3383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 1
+  highlightColor: {r: 0.7830189, g: 0.6434389, b: 0, a: 1}
 --- !u!54 &1737289006
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3272,11 +3425,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d528455dc6d4854f836bf5621a632a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instrumentParent: {fileID: 0}
-  displayedInstrument: {fileID: 0}
-  allOutMessage: {fileID: 0}
-  suppliesText: {fileID: 2019578451}
-  nameText: SAM Splint
+  operableInstrumentPrefab: {fileID: 0}
+  UI: {fileID: 0}
+  noneLeft: 0
 --- !u!212 &1737289009
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3528,6 +3679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 1
+  highlightColor: {r: 0.7830189, g: 0.6434389, b: 0, a: 1}
 --- !u!54 &1844873182
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3569,11 +3721,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d528455dc6d4854f836bf5621a632a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instrumentParent: {fileID: 0}
-  displayedInstrument: {fileID: 0}
-  allOutMessage: {fileID: 0}
-  suppliesText: {fileID: 2019578451}
-  nameText: Shears
+  operableInstrumentPrefab: {fileID: 0}
+  UI: {fileID: 0}
+  noneLeft: 0
 --- !u!212 &1844873185
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3642,10 +3792,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9cc55c8c35d0e844987832301c11620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  operableInstrumentPrefab: {fileID: 1480864720589322, guid: 85aced8b3fcea3246af59318b7847961,
-    type: 2}
   bag: {fileID: 0}
-  noneLeft: 0
+  icon: {fileID: 0}
+  UI: {fileID: 0}
   type: 0
   heldPosition: {x: 0, y: 0, z: 0}
   orientation: {x: 0, y: 0, z: 0}
@@ -3820,7 +3969,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1377982826}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: -90, y: 45, z: 0}
 --- !u!114 &1953951684
 MonoBehaviour:
@@ -3850,6 +3999,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 1
+  highlightColor: {r: 0.7830189, g: 0.6434389, b: 0, a: 1}
 --- !u!54 &1953951686
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3940,7 +4090,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!102 &2019578451
 TextMesh:
   serializedVersion: 3
@@ -4007,7 +4157,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2019578450}
   m_LocalRotation: {x: 0.000000008638635, y: 1, z: -0, w: -0.00000000991104}
-  m_LocalPosition: {x: 0, y: 0.4, z: 0.024}
+  m_LocalPosition: {x: -0, y: 0.376, z: -0.063}
   m_LocalScale: {x: 0.050000057, y: 0.05, z: 0.050000057}
   m_Children: []
   m_Father: {fileID: 1522154702}
@@ -4061,6 +4211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 1
+  highlightColor: {r: 0.7830189, g: 0.6434389, b: 0, a: 1}
 --- !u!54 &2053116136
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4102,11 +4253,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d528455dc6d4854f836bf5621a632a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instrumentParent: {fileID: 0}
-  displayedInstrument: {fileID: 0}
-  allOutMessage: {fileID: 0}
-  suppliesText: {fileID: 2019578451}
-  nameText: Surgical Tape
+  operableInstrumentPrefab: {fileID: 0}
+  UI: {fileID: 0}
+  noneLeft: 0
 --- !u!212 &2053116139
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4218,6 +4367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 1
+  highlightColor: {r: 0.7830189, g: 0.6434389, b: 0, a: 1}
 --- !u!54 &2100193914
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4259,11 +4409,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d528455dc6d4854f836bf5621a632a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instrumentParent: {fileID: 0}
-  displayedInstrument: {fileID: 0}
-  allOutMessage: {fileID: 0}
-  suppliesText: {fileID: 2019578451}
-  nameText: Gauze
+  operableInstrumentPrefab: {fileID: 0}
+  UI: {fileID: 0}
+  noneLeft: 0
 --- !u!212 &2100193917
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4327,10 +4475,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9cc55c8c35d0e844987832301c11620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  operableInstrumentPrefab: {fileID: 1480864720589322, guid: 85aced8b3fcea3246af59318b7847961,
-    type: 2}
   bag: {fileID: 0}
-  noneLeft: 0
+  icon: {fileID: 0}
+  UI: {fileID: 0}
   type: 0
   heldPosition: {x: 0, y: 0, z: 0}
   orientation: {x: 0, y: 0, z: 0}

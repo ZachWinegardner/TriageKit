@@ -23,20 +23,20 @@ public class tags : MonoBehaviour {
     public void Grabbed(Transform hand) {
         //Debug.Log("tag " + gameObject.name + "picked up.");
         transform.SetParent(hand);
-        hand.GetComponent<valveInput>().tagInHand = transform;
-        GetComponent<SelectionHighlight>().Highlight(Color.black); 
+        hand.GetComponent<valveInput>().objectHeld = transform;
+        GetComponent<SelectionHighlight>().Highlight(false); 
         
 
     }
 
-    public void Touched()
+    public void Touched(bool state)
     {
-        int count = iconParent.childCount;
-        for (int i = 0; i < count; i++)
+        if (state)
         {
-            iconParent.GetChild(i).gameObject.SetActive(false);
+
         }
-        tagDisplay.SetActive(true); 
+
+        GetComponent<SelectionHighlight>().Highlight(state); 
 
     }
 
@@ -52,7 +52,7 @@ public class tags : MonoBehaviour {
         newTag.transform.localScale = localscale;
         newTag.transform.localPosition = initialPosition;
         newTag.transform.localRotation = initialRotation;
-        newTag.GetComponent<SelectionHighlight>().Highlight(Color.black); 
+        //newTag.GetComponent<SelectionHighlight>().Highlight(Color.black); 
         if (destroy) {
         Destroy(this.gameObject);
         }

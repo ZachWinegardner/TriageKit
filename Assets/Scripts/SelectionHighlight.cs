@@ -4,26 +4,33 @@ using UnityEngine;
 
 public class SelectionHighlight : MonoBehaviour {
 
-    public bool canBeHighlighted = true; 
+    public bool canBeHighlighted = true;
+    public Color highlightColor;
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start () {
         transform.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
     }
    
-    public void Highlight(Color color)
+    public void Highlight(bool state)
     {
+        Color color; 
         if (canBeHighlighted)
         {
-            //check if object has children
+            if (state)
+            {
+                color = highlightColor;
+            }
+            else
+            {
+                color = Color.black; 
+            }
+            //check if object has children, but dont highlight if has more than 3 (for bag) optimize?
             if (transform.childCount > 0 && transform.childCount < 4)
             {
-                Renderer[] childrenRend = transform.GetComponentsInChildren<Renderer>();
-                foreach (Renderer child in childrenRend)
-                {
-                    child.material.SetColor("_EmissionColor", color);
-                }
-                transform.GetComponent<Renderer>().material.SetColor("_EmissionColor", color);
+                transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_EmissionColor", color);
+                transform.GetChild(1).GetComponent<Renderer>().material.SetColor("_EmissionColor", color);
 
             }
             else

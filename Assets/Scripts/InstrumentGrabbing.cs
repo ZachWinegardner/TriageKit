@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class instrumentSelection : MonoBehaviour {
+public class InstrumentGrabbing : MonoBehaviour {
 
-    public Transform bag, icon;      
+    public Transform bag, icon;
+    public Instrument_UI UI;
     public enum toolType: int
     {
         SurgicalTape = 0,
@@ -16,31 +17,29 @@ public class instrumentSelection : MonoBehaviour {
         Needle = 6,
         Naso = 7
     }
-    public toolType type;
+    public toolType type;   
     public Vector3 heldPosition;
     public Vector3 orientation;
     
-    public void Grabbed(Transform hand) {        
-       if (SuppliesManager.instance.counts[(int)type] > 0)
-        {            
-            transform.SetParent(hand);
-            transform.localPosition = heldPosition; 
-            transform.localEulerAngles = orientation; 
-            hand.GetComponent<valveInput>().toolInHand = transform;
-            SuppliesManager.instance.counts[(int)type]--;                                   
-        }                 
+    public void Grabbed(Transform hand) {
+        transform.SetParent(hand);
+        transform.localPosition = heldPosition;
+        transform.localEulerAngles = orientation;
+
+        hand.GetComponent<valveInput>().objectHeld = transform;
+        SuppliesManager.instance.counts[(int)type]--;
+        UI.InstrumentGrabbed();
     } 
     
     public void Released()
     {
-        Destroy(gameObject);        
+        Destroy(gameObject);       
     }
 
     public void Returned()
     {
         Destroy(gameObject);
         SuppliesManager.instance.counts[(int)type]++;
-        //SuppliesManager.instance.SetText();
     }
 
     private void OnCollisionEnter(Collision collision)
