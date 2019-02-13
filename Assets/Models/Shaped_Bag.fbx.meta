@@ -6,14 +6,22 @@ ModelImporter:
     100000: Bag_Lid
     100002: BagBody
     100004: //RootNode
+    100006: lid_dynamic
+    100008: pCube1
     400000: Bag_Lid
     400002: BagBody
     400004: //RootNode
+    400006: lid_dynamic
+    400008: pCube1
     2100000: lambert2
+    2100002: lambert1
     2300000: BagBody
+    2300002: lid_dynamic
     3300000: BagBody
+    3300002: lid_dynamic
     4300000: BagBody
     4300002: Bag_Lid
+    4300004: lid_dynamic
     9500000: //RootNode
     13700000: Bag_Lid
   externalObjects: {}

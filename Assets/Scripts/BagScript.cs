@@ -56,7 +56,8 @@ public class BagScript : MonoBehaviour {
             StartCoroutine(TouchBag());
             print("called bag touch"); 
         }
-        else
+        
+        if (!state)
         {
             StopCoroutine(TouchBag()); 
         }
@@ -77,7 +78,7 @@ public class BagScript : MonoBehaviour {
     IEnumerator TouchBag()
     {
         print("bag coroutine successful"); 
-        float timer = 0.3f;
+        float timer = 0.5f;
         while (timer > 0f)
         {
             timer -= Time.deltaTime;
@@ -136,11 +137,11 @@ public class BagScript : MonoBehaviour {
         while (timer < 1.0f)
         {
             transform.localPosition = Vector3.Lerp(startPos, destPos, bagLerpCurve.Evaluate(timer));
-            transform.localEulerAngles = new Vector3(Mathf.Lerp(startRot.x, startRot.y, bagLerpCurve.Evaluate(timer)), (Mathf.Lerp(startRot.y, destRotate.y, bagLerpCurve.Evaluate(timer))), 0);
+            transform.localEulerAngles = new Vector3(Mathf.Lerp(startRot.x, destRotate.x, bagLerpCurve.Evaluate(timer)), (Mathf.Lerp(startRot.y, destRotate.y, bagLerpCurve.Evaluate(timer))), 0);
             timer += Time.deltaTime * lerpSpeed;
             yield return null;
         }
         transform.localPosition = destPos;
-        transform.localEulerAngles = new Vector3(startRot.y, destRotate.y, 0); 
+        transform.localEulerAngles = new Vector3(destRotate.x, destRotate.y, 0); 
     }
 }

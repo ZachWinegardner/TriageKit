@@ -27,7 +27,7 @@ public class SelectionHighlight : MonoBehaviour {
                 color = Color.black; 
             }
             //check if object has children, but dont highlight if has more than 3 (for bag) optimize?
-            if (transform.childCount > 0 && transform.childCount < 4)
+            if (transform.childCount > 0)
             {
                 transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_EmissionColor", color);
                 transform.GetChild(1).GetComponent<Renderer>().material.SetColor("_EmissionColor", color);
