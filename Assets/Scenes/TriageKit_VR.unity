@@ -2455,8 +2455,8 @@ MonoBehaviour:
   viewportRangeMax: 1
   viewportRangeMin: 0
   lerpSpeed: 1.5
-  openBagHipPosition: {x: 0.02, y: 0.03, z: 0.2}
-  openBagRotation: {x: -40, y: 0, z: 0}
+  openBagHipPosition: {x: -0.15, y: 0.1, z: 0.2}
+  openBagRotation: {x: 40, y: 20, z: 0}
   bagLerpCurve:
     serializedVersion: 2
     m_Curve:

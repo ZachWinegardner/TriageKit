@@ -53,16 +53,13 @@ public class KitHipPlacement : MonoBehaviour {
 
         //quaternion comparison only on y axis rotations
         float distance = Quaternion.Angle(yAxisFollower.rotation, startRotation);
-        print(distance.ToString());
+        //print(distance.ToString());
 
         if (distance >= threshold)
         {
             StoreRotation();
             StartCoroutine(ReorientBag()); 
-
         }
-
-
     }
 
     IEnumerator ReorientBag()

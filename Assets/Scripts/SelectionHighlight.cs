@@ -15,7 +15,8 @@ public class SelectionHighlight : MonoBehaviour {
    
     public void Highlight(bool state)
     {
-        Color color; 
+        Color color;
+       
         if (canBeHighlighted)
         {
             if (state)
@@ -30,7 +31,12 @@ public class SelectionHighlight : MonoBehaviour {
             if (transform.childCount > 0)
             {
                 transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_EmissionColor", color);
+                transform.GetChild(0).GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
+
                 transform.GetChild(1).GetComponent<Renderer>().material.SetColor("_EmissionColor", color);
+                transform.GetChild(1).GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
+
+                
 
             }
             else
