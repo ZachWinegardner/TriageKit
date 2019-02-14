@@ -1,35 +1,14 @@
 fileFormatVersion: 2
-guid: b4d314c54dc0a58489b41b90c99b9ee6
+guid: 30bce7e066800c741a57c19633438e2f
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Bag_Lid
-    100002: BagBody
-    100004: //RootNode
-    100006: lid_dynamic
-    100008: pCube1
-    100010: Bag_Lid1
-    400000: Bag_Lid
-    400002: BagBody
-    400004: //RootNode
-    400006: lid_dynamic
-    400008: pCube1
-    400010: Bag_Lid1
-    2100000: lambert2
-    2100002: lambert1
-    2100004: lambert3
-    2300000: BagBody
-    2300002: lid_dynamic
-    2300004: Bag_Lid1
-    3300000: BagBody
-    3300002: lid_dynamic
-    3300004: Bag_Lid1
-    4300000: BagBody
-    4300002: Bag_Lid
-    4300004: lid_dynamic
-    4300006: Bag_Lid1
-    9500000: //RootNode
-    13700000: Bag_Lid
+    100000: //RootNode
+    400000: //RootNode
+    2100000: lambert1
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: pTorus1
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -81,8 +60,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.01
-    hasPreviousCalculatedGlobalScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -107,7 +86,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

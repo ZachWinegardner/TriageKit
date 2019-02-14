@@ -91,7 +91,7 @@ public class popoutInstruments : MonoBehaviour {
         while (lerper < 1.0f) {
             instrument.localPosition = Vector3.Lerp(startPos, destPos, popoutCurve.Evaluate(lerper));
             instrument.localScale = Vector3.Lerp(startScale,destScale, scaleCurve.Evaluate(lerper));
-            bagLid.localEulerAngles = new Vector3(Mathf.Lerp(0, -70, lidOpenCurve.Evaluate(lerper)), 0, 0);
+            bagLid.localEulerAngles = new Vector3(Mathf.Lerp(0f, 70f, lidOpenCurve.Evaluate(lerper)), 0, 0);
             bagLid.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, (Mathf.Lerp(0f, 100f, lidOpenCurve.Evaluate(lerper))));
             lerper += Time.deltaTime * speed;
             yield return null;
@@ -115,7 +115,7 @@ public class popoutInstruments : MonoBehaviour {
 
             instrument.localPosition = Vector3.Lerp(startPos, destPos, popoutCurve.Evaluate(lerper));
             instrument.localScale = Vector3.Lerp(startScale, destScale, popoutCurve.Evaluate(lerper));
-            bagLid.localEulerAngles = new Vector3(Mathf.Lerp(-70, 0, lidOpenCurve.Evaluate(lerper)), 0, 0);
+            bagLid.localEulerAngles = new Vector3(Mathf.Lerp(70f, 0f, lidOpenCurve.Evaluate(lerper)), 0, 0);
             bagLid.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, (Mathf.Lerp(100f, 0f, lidOpenCurve.Evaluate(lerper))));
 
             lerper += Time.deltaTime * speed;
