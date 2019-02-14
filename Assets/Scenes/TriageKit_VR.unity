@@ -1033,7 +1033,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 387154590}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.16235113, y: -0.24161506, z: 1.0076529}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2423,7 +2423,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1377982825}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.148, y: 0, z: 0.689}
+  m_LocalPosition: {x: 0, y: 0, z: 0.035}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 104026634}
@@ -3108,7 +3108,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1572093774}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.15, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3116,7 +3116,7 @@ Transform:
   - {fileID: 223942878}
   m_Father: {fileID: 1740790839}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1585181863
 GameObject:
   m_ObjectHideFlags: 0
@@ -3533,7 +3533,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hipAngleAdjustment: 0
-  followRotation: 0
+  smoothOrient: 1
   minHeadHieght: 0.65
   maxHeadHeight: 1.7
   minHip: 0.15
@@ -3542,27 +3542,36 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
+      time: 0.00062265573
+      value: 3.0055199
+      inSlope: -2.3054528
+      outSlope: -2.3054528
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.33158335
     - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
+      time: 0.36049753
+      value: 0.6271155
+      inSlope: -6.861349
+      outSlope: -6.861349
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.58524626
+      value: 0.04866588
+      inSlope: -0.12607266
+      outSlope: -0.12607266
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.3915832
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  lerpSpeed: 2
+  lerpSpeed: 1.3
   threshold: 90
   yAxisFollower: {fileID: 387154591}
 --- !u!4 &1740790839

@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HipPlacementFollow : MonoBehaviour {
+public class KitHipPlacement : MonoBehaviour {
     //This script ensures the kit will follow head rotation when rooted at hip
     //It also places the kit at the proper hip height based on the Y pos of the camera
     public float hipAngleAdjustment; 
-    public bool followRotation = true;
+    public bool smoothOrient = true;
     public float minHeadHieght, maxHeadHeight, minHip, maxHip;
     public AnimationCurve reorientCurve;
     public float lerpSpeed = 1f;
@@ -42,10 +42,10 @@ public class HipPlacementFollow : MonoBehaviour {
         kitPos.y = Mathf.Lerp(minHip, maxHip, normalizedHeadHeight);
         kit.position = kitPos;
 
-        if (followRotation && !bag.isOpen)
-        {
-            transform.localEulerAngles = new Vector3(0, cam.localEulerAngles.y - hipAngleAdjustment, 0);
-        }
+        //if (smoothOrient && !bag.isOpen)
+        //{
+        //    transform.localEulerAngles = new Vector3(0, cam.localEulerAngles.y - hipAngleAdjustment, 0);
+        //}
 
         //Follower only tracks y axis
         yFollow.y = cam.eulerAngles.y;
@@ -67,18 +67,20 @@ public class HipPlacementFollow : MonoBehaviour {
 
     IEnumerator ReorientBag()
     {
-        float lerper = 1f;
+        float lerper =0f;
+        float step;
         Quaternion source = transform.rotation; 
-        while (lerper > 0f)
+        while (transform.rotation != startRotation && smoothOrient)
         {
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, startRotation, lerper); 
-            lerper -= Time.deltaTime * lerpSpeed; 
+            step = reorientCurve.Evaluate(lerper)* lerpSpeed;
+            lerper += Time.deltaTime;
+
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, startRotation, step); 
             yield return null;
 
             //transform.localEulerAngles = new Vector3(0f, (Mathf.Lerp(transform.localEulerAngles.y, degree, reorientCurve.Evaluate(lerper))), 0f);    
         }
-        //transform.localEulerAngles = new Vector3(0f, degree, 0f); 
-        //transform.rotation = yAxisFollower.rotation; 
+        transform.rotation = startRotation; 
     }
 
     void StoreRotation()
