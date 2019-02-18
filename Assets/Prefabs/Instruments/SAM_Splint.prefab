@@ -125,7 +125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d066e83d1f0e3b4983e47aa9e1a4ba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canBeHighlighted: 0
+  canBeHighlighted: 1
+  highlightColor: {r: 0.6792453, g: 0.66336673, b: 0, a: 1}
 --- !u!114 &114495817359796964
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -137,9 +138,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9cc55c8c35d0e844987832301c11620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  operableInstrumentPrefab: {fileID: 1694322770825672}
   bag: {fileID: 0}
-  noneLeft: 0
+  icon: {fileID: 0}
+  UI: {fileID: 0}
   type: 3
   heldPosition: {x: -0.0147, y: -0.0252, z: 0.0048}
   orientation: {x: 63.297, y: -150.931, z: -51.487}

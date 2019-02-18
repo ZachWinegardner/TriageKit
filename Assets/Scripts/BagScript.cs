@@ -94,7 +94,7 @@ public class BagScript : MonoBehaviour {
 
     public void Grabbed(Transform hand)
     {
-        transform.parent = hand; 
+        //transform.parent = hand; 
     }
 
     public void Released()
@@ -142,6 +142,7 @@ public class BagScript : MonoBehaviour {
             yield return null;
         }
         transform.localPosition = destPos;
-        transform.localEulerAngles = new Vector3(destRotate.x, destRotate.y, 0); 
+        transform.localEulerAngles = new Vector3(destRotate.x, destRotate.y, 0);
+        //transform.LookAt(Camera.main.transform);      
     }
 }

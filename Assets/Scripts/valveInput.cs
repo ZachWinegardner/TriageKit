@@ -56,7 +56,7 @@ public class valveInput : MonoBehaviour {
 
         if (getPinchUp())
         {
-            StopCoroutine(HoldingPinch()); 
+            StopAllCoroutines(); 
 
             //For letting go of bag (will optimize to include letting go of tools upon specific condition)
             if (draggableObject != null && objectHeld == null)
@@ -97,7 +97,6 @@ public class valveInput : MonoBehaviour {
             {
                 draggableObject = collision.transform;
                 Send(draggableObject, "Touched", true);
-                print("touched thing"); 
             }           
         }
     }
@@ -120,8 +119,9 @@ public class valveInput : MonoBehaviour {
         }         
     }
    
-    IEnumerator HoldingPinch()
+    public IEnumerator HoldingPinch()
     {
+        //print("started hold"); 
         float timer = 1f;
         while (timer > 0f)
         {
@@ -130,13 +130,14 @@ public class valveInput : MonoBehaviour {
         }
         if (timer <= 0f)
         {
-            releaseOnPinchUp = true; 
+            releaseOnPinchUp = true;
         }
     }
 
     void Send(Transform thing, string command)
     {
-        thing.SendMessage(command, SendMessageOptions.DontRequireReceiver); 
+        //sends message with hand's transfrom in argument
+        thing.SendMessage(command, transform, SendMessageOptions.DontRequireReceiver); 
     }
 
     void Send(Transform thing, string command, bool state)

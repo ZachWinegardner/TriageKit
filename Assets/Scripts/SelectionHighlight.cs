@@ -9,7 +9,7 @@ public class SelectionHighlight : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start () {
+    void Awake () {
         transform.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
     }
    
