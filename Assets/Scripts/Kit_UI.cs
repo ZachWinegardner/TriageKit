@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Instrument_UI : MonoBehaviour {
+public class Kit_UI : MonoBehaviour {
 
-    public GameObject featuredInstrument;
+    public GameObject featuredInstrument, goneText;
     public Transform featureLocation;
     public TextMesh text;
 
@@ -24,6 +24,12 @@ public class Instrument_UI : MonoBehaviour {
             prefabStats = featuredInstrument.GetComponent<InstrumentGrabbing>();
             text.text = prefabStats.type.ToString() + ": " + SuppliesManager.instance.counts[(int)prefabStats.type];
         }
+    }
+
+    public void Clear()
+    {
+        Destroy(featuredInstrument);
+        InstrumentGrabbed(); 
     }
 
     public void InstrumentGrabbed()

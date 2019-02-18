@@ -7,7 +7,8 @@ public class IconTouch : MonoBehaviour {
     //Goes on the sprites displaying the tools
        
     public GameObject operableInstrumentPrefab;
-    public Instrument_UI UI;      
+    public Kit_UI UI;
+    public BagScript bag; 
     public bool noneLeft = false;
 
     private int typeIndex;
@@ -26,9 +27,15 @@ public class IconTouch : MonoBehaviour {
             {
                 UI.ShowInstrument(operableInstrumentPrefab);
             }
+            else
+            {
+                UI.ShowInstrument(UI.goneText); 
+            }
         }
        
         GetComponent<SelectionHighlight>().Highlight(state);
+        bag.ResetTimeout();
+        print("reset called"); 
 
 
         //if (SuppliesManager.instance.counts[(int)type] > 0)

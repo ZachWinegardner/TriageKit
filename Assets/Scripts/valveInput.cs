@@ -13,7 +13,8 @@ public class valveInput : MonoBehaviour {
     public Transform draggableObject;    
     public Transform objectHeld; 
     public bool pinchHold = false;
-    public bool releaseOnPinchUp = false; 
+    public bool releaseOnPinchUp = false;
+    public BagScript bag; 
     
 	void Start () {
         hand = gameObject.GetComponent<Hand>();
@@ -51,7 +52,9 @@ public class valveInput : MonoBehaviour {
                         Send(draggableObject, "Grabbed");
                     }
                 }
-            }                                 
+            }
+
+            bag.ResetTimeout(); 
         }
 
         if (getPinchUp())

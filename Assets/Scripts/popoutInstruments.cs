@@ -102,7 +102,6 @@ public class popoutInstruments : MonoBehaviour {
     }
 
     IEnumerator Close(int instrumentIndex) {
-        print("closing"); 
         Transform instrument = instruments[instrumentIndex];
         Vector3 destScale = (scales[instrumentIndex]*0.01f);
         Vector3 destPos = Vector3.zero;

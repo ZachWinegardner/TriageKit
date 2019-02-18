@@ -1880,6 +1880,16 @@ MonoBehaviour:
   isSeen: 0
   viewportRangeMax: 1.2
   viewportRangeMin: -0.2
+  lerpSpeed: 1
+  inactivityTimeout: 20
+  openBagHipPosition: {x: 0, y: 0, z: 0}
+  openBagRotation: {x: 0, y: 0, z: 0}
+  bagLerpCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &114582009578113416
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1892,6 +1902,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popoutRoot: {fileID: 4609456115403484}
+  bagLid: {fileID: 0}
   speed: 1.5
   popoutCurve:
     serializedVersion: 2
@@ -1938,12 +1949,6 @@ MonoBehaviour:
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  xSpreadCurve:
-    serializedVersion: 2
-    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -2007,8 +2012,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hipAngleAdjustment: 0
-  followRotation: 1
+  smoothOrient: 1
   minHeadHieght: 0
   maxHeadHeight: 0
   minHip: 0
   maxHip: 0
+  reorientCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  lerpSpeed: 1
+  threshold: 0
+  yAxisFollower: {fileID: 0}

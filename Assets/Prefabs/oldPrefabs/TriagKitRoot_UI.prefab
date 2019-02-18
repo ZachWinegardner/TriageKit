@@ -2468,9 +2468,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9cc55c8c35d0e844987832301c11620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  operableInstrumentPrefab: {fileID: 1510997802221016}
-  bag: {fileID: 114058099503402946}
-  noneLeft: 0
+  bag: {fileID: 0}
+  icon: {fileID: 0}
+  UI: {fileID: 0}
   type: 5
   heldPosition: {x: -0.0058, y: 0, z: -0.0189}
   orientation: {x: 12.428, y: 76.19, z: 121.584}
@@ -2490,6 +2490,7 @@ MonoBehaviour:
   viewportRangeMax: 1
   viewportRangeMin: 0
   lerpSpeed: 1.5
+  inactivityTimeout: 20
   openBagHipPosition: {x: -0.22, y: 0.03, z: 0.014}
   openBagRotation: {x: 0, y: 120, z: 0}
   bagLerpCurve:
@@ -2528,6 +2529,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 1
+  highlightColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114084272667389870
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2554,6 +2556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 1
+  highlightColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114120824284366656
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2565,11 +2568,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d528455dc6d4854f836bf5621a632a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instrumentParent: {fileID: 4066491930273934}
-  displayedInstrument: {fileID: 1350131240647066}
-  allOutMessage: {fileID: 1615666447416130}
-  suppliesText: {fileID: 102586523271542572}
-  nameText: Naso Airway
+  operableInstrumentPrefab: {fileID: 0}
+  UI: {fileID: 0}
+  bag: {fileID: 0}
+  noneLeft: 0
 --- !u!114 &114160224951825534
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2581,11 +2583,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d528455dc6d4854f836bf5621a632a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instrumentParent: {fileID: 4066491930273934}
-  displayedInstrument: {fileID: 1050986929436186}
-  allOutMessage: {fileID: 1615666447416130}
-  suppliesText: {fileID: 102586523271542572}
-  nameText: Surgical Tape
+  operableInstrumentPrefab: {fileID: 0}
+  UI: {fileID: 0}
+  bag: {fileID: 0}
+  noneLeft: 0
 --- !u!114 &114173133413219912
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2611,11 +2612,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d528455dc6d4854f836bf5621a632a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instrumentParent: {fileID: 4066491930273934}
-  displayedInstrument: {fileID: 1323490928370508}
-  allOutMessage: {fileID: 1615666447416130}
-  suppliesText: {fileID: 102586523271542572}
-  nameText: Occlusive
+  operableInstrumentPrefab: {fileID: 0}
+  UI: {fileID: 0}
+  bag: {fileID: 0}
+  noneLeft: 0
 --- !u!114 &114179435087907592
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2628,6 +2628,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 0
+  highlightColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114185048838840200
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2640,6 +2641,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 1
+  highlightColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114242042205001170
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2652,6 +2654,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 0
+  highlightColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114247733000426952
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2664,6 +2667,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 0
+  highlightColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114262746658215172
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2675,11 +2679,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d528455dc6d4854f836bf5621a632a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instrumentParent: {fileID: 4066491930273934}
-  displayedInstrument: {fileID: 1808608283492348}
-  allOutMessage: {fileID: 1615666447416130}
-  suppliesText: {fileID: 102586523271542572}
-  nameText: SAM Splint
+  operableInstrumentPrefab: {fileID: 0}
+  UI: {fileID: 0}
+  bag: {fileID: 0}
+  noneLeft: 0
 --- !u!114 &114266085415501134
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2692,6 +2695,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 1
+  highlightColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114269386149121420
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2717,11 +2721,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d528455dc6d4854f836bf5621a632a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instrumentParent: {fileID: 4066491930273934}
-  displayedInstrument: {fileID: 1142250966688662}
-  allOutMessage: {fileID: 1615666447416130}
-  suppliesText: {fileID: 102586523271542572}
-  nameText: Tourniquet
+  operableInstrumentPrefab: {fileID: 0}
+  UI: {fileID: 0}
+  bag: {fileID: 0}
+  noneLeft: 0
 --- !u!114 &114336067666947098
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2733,9 +2736,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9cc55c8c35d0e844987832301c11620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  operableInstrumentPrefab: {fileID: 1350131240647066}
-  bag: {fileID: 114058099503402946}
-  noneLeft: 0
+  bag: {fileID: 0}
+  icon: {fileID: 0}
+  UI: {fileID: 0}
   type: 7
   heldPosition: {x: -0.0204, y: -0.0262, z: -0.0114}
   orientation: {x: 18.943, y: 80.125, z: -0.011}
@@ -2751,6 +2754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 0
+  highlightColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114440114290093732
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2763,6 +2767,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 1
+  highlightColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114492445132773976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2775,6 +2780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 1
+  highlightColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114535301008135750
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2786,9 +2792,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9cc55c8c35d0e844987832301c11620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  operableInstrumentPrefab: {fileID: 1050986929436186}
-  bag: {fileID: 114058099503402946}
-  noneLeft: 0
+  bag: {fileID: 0}
+  icon: {fileID: 0}
+  UI: {fileID: 0}
   type: 0
   heldPosition: {x: -0.0269, y: -0.0314, z: 0.0094}
   orientation: {x: 25.711, y: 0, z: 17.421}
@@ -2818,6 +2824,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popoutRoot: {fileID: 4655425323523816}
+  bagLid: {fileID: 0}
   speed: 1.2
   popoutCurve:
     serializedVersion: 2
@@ -2891,6 +2898,12 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  lidOpenCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &114602857009678288
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2902,9 +2915,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9cc55c8c35d0e844987832301c11620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  operableInstrumentPrefab: {fileID: 1142250966688662}
-  bag: {fileID: 114058099503402946}
-  noneLeft: 0
+  bag: {fileID: 0}
+  icon: {fileID: 0}
+  UI: {fileID: 0}
   type: 4
   heldPosition: {x: -0.0155, y: -0.0175, z: 0.0105}
   orientation: {x: -99.305, y: -4.233, z: -0.056}
@@ -2920,6 +2933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 1
+  highlightColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114670615594844478
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2946,6 +2960,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 1
+  highlightColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114690644202491764
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2957,11 +2972,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d528455dc6d4854f836bf5621a632a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instrumentParent: {fileID: 4066491930273934}
-  displayedInstrument: {fileID: 1510997802221016}
-  allOutMessage: {fileID: 1615666447416130}
-  suppliesText: {fileID: 102586523271542572}
-  nameText: Shears
+  operableInstrumentPrefab: {fileID: 0}
+  UI: {fileID: 0}
+  bag: {fileID: 0}
+  noneLeft: 0
 --- !u!114 &114714028674686844
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2974,6 +2988,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 1
+  highlightColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114718491751945392
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2986,11 +3001,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hipAngleAdjustment: 0
-  followRotation: 1
+  smoothOrient: 1
   minHeadHieght: 0.65
   maxHeadHeight: 1.7
   minHip: 0.15
   maxHip: 0.9
+  reorientCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  lerpSpeed: 1
+  threshold: 0
+  yAxisFollower: {fileID: 0}
 --- !u!114 &114719135370718100
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3003,6 +3027,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 0
+  highlightColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114724990581055492
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3014,9 +3039,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9cc55c8c35d0e844987832301c11620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  operableInstrumentPrefab: {fileID: 1187371153105864}
-  bag: {fileID: 114058099503402946}
-  noneLeft: 0
+  bag: {fileID: 0}
+  icon: {fileID: 0}
+  UI: {fileID: 0}
   type: 6
   heldPosition: {x: -0.0251, y: -0.0294, z: 0.0201}
   orientation: {x: 71.76701, y: -179.36, z: -178.747}
@@ -3032,6 +3057,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 0
+  highlightColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114782013049581472
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3043,9 +3069,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9cc55c8c35d0e844987832301c11620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  operableInstrumentPrefab: {fileID: 1320267045058772}
-  bag: {fileID: 114058099503402946}
-  noneLeft: 0
+  bag: {fileID: 0}
+  icon: {fileID: 0}
+  UI: {fileID: 0}
   type: 1
   heldPosition: {x: -0.023, y: -0.01, z: -0.0168}
   orientation: {x: 34.2, y: -28.3, z: 14}
@@ -3060,9 +3086,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9cc55c8c35d0e844987832301c11620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  operableInstrumentPrefab: {fileID: 1323490928370508}
-  bag: {fileID: 114058099503402946}
-  noneLeft: 0
+  bag: {fileID: 0}
+  icon: {fileID: 0}
+  UI: {fileID: 0}
   type: 2
   heldPosition: {x: -0.0235, y: -0.0215, z: 0.0168}
   orientation: {x: 74.592, y: -165.145, z: -157.079}
@@ -3078,6 +3104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 1
+  highlightColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114810378464935072
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3089,11 +3116,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d528455dc6d4854f836bf5621a632a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instrumentParent: {fileID: 4066491930273934}
-  displayedInstrument: {fileID: 1187371153105864}
-  allOutMessage: {fileID: 1615666447416130}
-  suppliesText: {fileID: 102586523271542572}
-  nameText: Needle
+  operableInstrumentPrefab: {fileID: 0}
+  UI: {fileID: 0}
+  bag: {fileID: 0}
+  noneLeft: 0
 --- !u!114 &114818778560458674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3105,9 +3131,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9cc55c8c35d0e844987832301c11620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  operableInstrumentPrefab: {fileID: 1808608283492348}
-  bag: {fileID: 114058099503402946}
-  noneLeft: 0
+  bag: {fileID: 0}
+  icon: {fileID: 0}
+  UI: {fileID: 0}
   type: 3
   heldPosition: {x: -0.0147, y: -0.0252, z: 0.0048}
   orientation: {x: 63.297, y: -150.931, z: -51.487}
@@ -3123,6 +3149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 1
+  highlightColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114834770708992564
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3135,6 +3162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 0
+  highlightColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114931748709210744
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3146,11 +3174,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d528455dc6d4854f836bf5621a632a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instrumentParent: {fileID: 4066491930273934}
-  displayedInstrument: {fileID: 1320267045058772}
-  allOutMessage: {fileID: 1615666447416130}
-  suppliesText: {fileID: 102586523271542572}
-  nameText: Gauze
+  operableInstrumentPrefab: {fileID: 0}
+  UI: {fileID: 0}
+  bag: {fileID: 0}
+  noneLeft: 0
 --- !u!114 &114945716679518374
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3163,6 +3190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 0
+  highlightColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114961273696805962
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3175,6 +3203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 1
+  highlightColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114968538969087310
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3187,6 +3216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 1
+  highlightColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &114994101664831458
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3199,6 +3229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBeHighlighted: 1
+  highlightColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!136 &136415290466705188
 CapsuleCollider:
   m_ObjectHideFlags: 1

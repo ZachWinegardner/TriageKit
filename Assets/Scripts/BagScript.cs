@@ -16,13 +16,17 @@ public class BagScript : MonoBehaviour {
 
     public bool isOpen = false;
     public bool isSeen = false;
+    public bool timeoutRunning = false; 
     //adjustment to widen the range of view
     public float viewportRangeMax = 1f;
     public float viewportRangeMin = 0f;
     public float lerpSpeed=1f;
+    public float inactivityTimeout = 20f;
     public Vector3 openBagHipPosition;
     public Vector3 openBagRotation;
-    public AnimationCurve bagLerpCurve; 
+    public AnimationCurve bagLerpCurve;
+    public Coroutine timerRoutine = null;
+    public Coroutine touchRoutine = null;
 
     public void Start()
     {
@@ -50,20 +54,17 @@ public class BagScript : MonoBehaviour {
     //Easy way for player (mouse, controller, etc) to call the same function with one line of code, but each item does its own unique thing wihtin Grabbed()
     public void Touched(bool state)
     {
-        print("touch called"); 
         if (state && isSeen && !isOpen)
         {        
-            StartCoroutine(TouchBag());
-            print("called bag touch"); 
-        }
-        
-        if (!state)
-        {
-            StopCoroutine(TouchBag()); 
+            touchRoutine = StartCoroutine(TouchBag());
+            GetComponent<SelectionHighlight>().Highlight(state);
         }
 
-        GetComponent<SelectionHighlight>().Highlight(state);
-                                  
+        if (!state)
+        {            
+            StopCoroutine(touchRoutine);
+            GetComponent<SelectionHighlight>().Highlight(state);
+        }
     }
 
     public void Open()
@@ -72,12 +73,11 @@ public class BagScript : MonoBehaviour {
         StartCoroutine(BagHipLerp(openBagHipPosition, openBagRotation));
         popout.OpenBag();
         isOpen = true;
-        print("open successful"); 
+        timerRoutine = StartCoroutine(TimeoutCheck()); 
     }
 
     IEnumerator TouchBag()
     {
-        print("bag coroutine successful"); 
         float timer = 0.5f;
         while (timer > 0f)
         {
@@ -87,8 +87,40 @@ public class BagScript : MonoBehaviour {
         if (timer <= 0f)
         {
             Open();
-            print("called open"); 
 
+        }
+    }
+
+    IEnumerator TimeoutCheck()
+    {
+        timeoutRunning = true; 
+        float timer = inactivityTimeout;            
+        while(timer > 0f)
+        {
+            timer -= Time.deltaTime;
+            yield return null; 
+        }
+        if(timer <= 0f)
+        {
+            timeoutRunning = false;
+            ReturnToHip();
+        }
+
+    }
+
+    public void ResetTimeout()
+    {
+        //if the timer is running, reset it and keep it going
+        //(only way to start timer if it isn't already running is through the Open() function
+
+        if (timeoutRunning)
+        {
+            print("resetting");
+
+            StopCoroutine(timerRoutine);
+
+            timeoutRunning = false; 
+            timerRoutine = StartCoroutine(TimeoutCheck());
         }
     }
 
@@ -104,10 +136,12 @@ public class BagScript : MonoBehaviour {
 
     public void ReturnToHip()
     {
+        StopCoroutine(timerRoutine); 
         transform.parent = hipParent;
         StartCoroutine(BagHipLerp(bagHomePos, bagHomeRotation)); 
         popout.CloseBag();
         isOpen = false;
+        GetComponent<Kit_UI>().Clear(); 
     }
 
     void SetToViewport()

@@ -5,7 +5,7 @@ using UnityEngine;
 public class InstrumentGrabbing : MonoBehaviour {
 
     public Transform bag, icon;
-    public Instrument_UI UI;
+    public Kit_UI UI;
     public enum toolType: int
     {
         SurgicalTape = 0,
@@ -20,7 +20,12 @@ public class InstrumentGrabbing : MonoBehaviour {
     public toolType type;   
     public Vector3 heldPosition;
     public Vector3 orientation;
-    
+
+    private void Awake()
+    {
+        UI = GameObject.Find("Shaped_Bag").GetComponent<Kit_UI>(); 
+    }
+
     public void Grabbed(Transform hand) {
         transform.SetParent(hand);
         transform.localPosition = heldPosition;
@@ -44,7 +49,7 @@ public class InstrumentGrabbing : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform == icon || collision.transform == bag)
+        if (collision.gameObject.name.Contains("Bag"))
         {
             Returned(); 
         }
