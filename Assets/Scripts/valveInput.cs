@@ -121,7 +121,13 @@ public class valveInput : MonoBehaviour {
             }
         }         
     }
-   
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Animator anim = other.GetComponent<Animator>();
+        anim.SetFloat("nTime", 0.5f); 
+    }
+
     public IEnumerator HoldingPinch()
     {
         //print("started hold"); 
