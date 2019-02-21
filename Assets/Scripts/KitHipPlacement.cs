@@ -55,6 +55,15 @@ public class KitHipPlacement : MonoBehaviour {
         float distance = Quaternion.Angle(yAxisFollower.rotation, startRotation);
         //print(distance.ToString());
 
+        if (bag.isSeen)
+        {
+            threshold = 120;
+        }
+        else
+        {
+            threshold = 45; 
+        }
+
         if (distance >= threshold)
         {
             StoreRotation();

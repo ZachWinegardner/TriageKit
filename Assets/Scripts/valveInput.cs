@@ -14,7 +14,11 @@ public class valveInput : MonoBehaviour {
     public Transform objectHeld; 
     public bool pinchHold = false;
     public bool releaseOnPinchUp = false;
-    public BagScript bag; 
+    public bool reaching = false; 
+    public BagScript bag;
+
+    public Animator anim;
+    public Transform bagTrigger; 
     
 	void Start () {
         hand = gameObject.GetComponent<Hand>();
@@ -78,7 +82,17 @@ public class valveInput : MonoBehaviour {
                 releaseOnPinchUp = false;
 
             }
-        }       
+        }    
+        
+        if (reaching)
+        {
+            anim.SetFloat("nTime", Mathf.InverseLerp(0.6f, 0.22f, (Vector3.Distance(transform.position, bagTrigger.position))));
+            print(Vector3.Distance(transform.position, bagTrigger.position)); 
+            if (anim.GetFloat("nTime") >= 1f)
+            {
+                reaching = false; 
+            }
+        }
     }
     
 
@@ -124,8 +138,15 @@ public class valveInput : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        Animator anim = other.GetComponent<Animator>();
-        anim.SetFloat("nTime", 0.5f); 
+        anim = other.GetComponent<Animator>();
+        bagTrigger = other.transform;
+        reaching = true; 
+              
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        reaching = false; 
     }
 
     public IEnumerator HoldingPinch()

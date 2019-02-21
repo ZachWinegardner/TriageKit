@@ -43,7 +43,7 @@ public class popoutInstruments : MonoBehaviour {
             rotations[i] = instruments[i].localRotation;
             scales[i] = instruments[i].localScale;
             instruments[i].localPosition = Vector3.zero;
-            instruments[i].localScale *= 0.1f;
+            instruments[i].localScale *= 0f;
             //StartCoroutine(PopOpen(instruments[i]));
         }
     }
