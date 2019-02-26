@@ -140,13 +140,35 @@ public class valveInput : MonoBehaviour {
     {
         anim = other.GetComponent<Animator>();
         bagTrigger = other.transform;
-        reaching = true; 
-              
+
+        if (other.name.Contains("reach"))
+        {
+            reaching = true;
+        }
+        else
+        {
+            anim.SetFloat("nTime", .9f);
+            bagTrigger.parent.GetChild(0).gameObject.SetActive(true); 
+
+        }
+
+
     }
 
     private void OnTriggerExit(Collider other)
     {
-        reaching = false; 
+        if (other.name.Contains("reach"))
+        {
+            reaching = false;
+        }
+        else
+        {
+            anim.speed = 0f;
+            anim.SetFloat("nTime", 0f);
+            bagTrigger.parent.GetChild(0).gameObject.SetActive(false);
+
+        }
+
     }
 
     public IEnumerator HoldingPinch()

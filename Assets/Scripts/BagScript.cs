@@ -22,6 +22,7 @@ public class BagScript : MonoBehaviour {
     public float viewportRangeMin = 0f;
     public float lerpSpeed=1f;
     public float inactivityTimeout = 20f;
+    public float touchDuration = 0.3f; 
     public Vector3 openBagHipPosition;
     public Vector3 openBagRotation;
     public AnimationCurve bagLerpCurve;
@@ -42,7 +43,12 @@ public class BagScript : MonoBehaviour {
 		if (SteamVR_Input._default.inActions.Teleport.GetStateDown(SteamVR_Input_Sources.Any))
         {
             ReturnToHip();            
-        }      
+        }
+
+        if (SteamVR_Input._default.inActions.GrabPinch.GetStateDown(SteamVR_Input_Sources.Any))
+        {
+            Open();
+        }
 
         SetToViewport();
         isSeen = IsWithinViewport(bagViewportPos);
@@ -78,7 +84,7 @@ public class BagScript : MonoBehaviour {
 
     IEnumerator TouchBag()
     {
-        float timer = 0.5f;
+        float timer = touchDuration;
         while (timer > 0f)
         {
             timer -= Time.deltaTime;
