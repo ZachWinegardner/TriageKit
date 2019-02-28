@@ -16,15 +16,19 @@ public class BagScript : MonoBehaviour {
 
     public bool isOpen = false;
     public bool isSeen = false;
+    public bool isTouched = false; 
     public bool timeoutRunning = false; 
     //adjustment to widen the range of view
     public float viewportRangeMax = 1f;
     public float viewportRangeMin = 0f;
     public float lerpSpeed=1f;
     public float inactivityTimeout = 20f;
-    public float touchDuration = 0.3f; 
+    public float touchDuration = 0.3f;
+    public float distThreshold = 4f; 
     public Vector3 openBagHipPosition;
     public Vector3 openBagRotation;
+    public Vector3 releasedPosition;
+    public Transform head; 
     public AnimationCurve bagLerpCurve;
     public Coroutine timerRoutine = null;
     public Coroutine touchRoutine = null;
@@ -36,7 +40,8 @@ public class BagScript : MonoBehaviour {
         popout = GetComponent<popoutInstruments>(); 
         SetToViewport();
         bagHomePos = transform.localPosition;
-        bagHomeRotation = transform.localEulerAngles; 
+        bagHomeRotation = transform.localEulerAngles;
+        head = Camera.main.transform; 
     }
     private void Update()
     {
@@ -47,7 +52,7 @@ public class BagScript : MonoBehaviour {
 
         if (SteamVR_Input._default.inActions.GrabPinch.GetStateDown(SteamVR_Input_Sources.Any))
         {
-            Open();
+          //  Open();
         }
 
         SetToViewport();
@@ -58,19 +63,22 @@ public class BagScript : MonoBehaviour {
     //When event occurs, like a click, or touch, or button, (SendMessage "Grabbed") is called to that spcecific item
     //The bag here, when touched, opens the tools | but the tools when "Grabbed()" might instantiate or do something different
     //Easy way for player (mouse, controller, etc) to call the same function with one line of code, but each item does its own unique thing wihtin Grabbed()
-    public void Touched(bool state)
-    {
-        if (state && isSeen && !isOpen)
-        {        
-            touchRoutine = StartCoroutine(TouchBag());
-            GetComponent<SelectionHighlight>().Highlight(state);
-        }
 
-        if (!state)
-        {            
-            StopCoroutine(touchRoutine);
-            GetComponent<SelectionHighlight>().Highlight(state);
-        }
+    //public void Touched(bool state)
+    //{
+    //    isTouched = state; 
+    //}
+
+    public void Grabbed(Transform hand)
+    {
+        transform.parent = hand; 
+    }
+
+    public void Released()
+    {
+        transform.parent = null;
+        releasedPosition = transform.position;
+        StartCoroutine(EvaluateDistance()); 
     }
 
     public void Open()
@@ -79,7 +87,23 @@ public class BagScript : MonoBehaviour {
         StartCoroutine(BagHipLerp(openBagHipPosition, openBagRotation));
         popout.OpenBag();
         isOpen = true;
-        timerRoutine = StartCoroutine(TimeoutCheck()); 
+        //timerRoutine = StartCoroutine(TimeoutCheck()); 
+    }
+
+    //while the bag is within range, calculate its distance, when its out of range, return it
+    IEnumerator EvaluateDistance()
+    {
+        Vector3 headPos = head.position;
+        float dist = Vector3.Distance(releasedPosition, headPos);
+        while(dist < distThreshold)
+        {
+            headPos = head.position;
+            dist = Vector3.Distance(releasedPosition, headPos);
+            print(dist.ToString()); 
+            yield return null; 
+        }
+        print("returning"); 
+        ReturnToHip();
     }
 
     IEnumerator TouchBag()
@@ -129,20 +153,10 @@ public class BagScript : MonoBehaviour {
             timerRoutine = StartCoroutine(TimeoutCheck());
         }
     }
-
-    public void Grabbed(Transform hand)
-    {
-        //transform.parent = hand; 
-    }
-
-    public void Released()
-    {
-        transform.parent = null;
-    }
-
+       
     public void ReturnToHip()
     {
-        StopCoroutine(timerRoutine); 
+        //StopCoroutine(timerRoutine); 
         transform.parent = hipParent;
         StartCoroutine(BagHipLerp(bagHomePos, bagHomeRotation)); 
         popout.CloseBag();
