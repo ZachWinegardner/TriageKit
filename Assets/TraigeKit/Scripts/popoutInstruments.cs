@@ -98,7 +98,7 @@ public class popoutInstruments : MonoBehaviour {
         }
         instrument.localPosition = destPos;
         instrument.localScale = destScale;
-
+        
     }
 
     IEnumerator Close(int instrumentIndex) {

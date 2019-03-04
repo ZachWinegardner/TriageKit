@@ -26,6 +26,7 @@ public class IconTouch : MonoBehaviour {
             if (SuppliesManager.instance.counts[typeIndex] > 0)
             {
                 UI.ShowInstrument(operableInstrumentPrefab);
+
             }
             else
             {

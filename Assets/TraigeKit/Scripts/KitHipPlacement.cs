@@ -53,7 +53,7 @@ public class KitHipPlacement : MonoBehaviour {
         yAxisFollower.eulerAngles = yFollow;
 
         if (!bag.isOpen)
-        {            
+        {
             //quaternion comparison only on y axis rotations
             float distance = Quaternion.Angle(yAxisFollower.rotation, startRotation);
             //print(distance.ToString());
@@ -63,6 +63,10 @@ public class KitHipPlacement : MonoBehaviour {
                 StoreRotation();
                 StartCoroutine(ReorientBag());
             }
+        }
+        else
+        {
+            transform.rotation = yAxisFollower.rotation;
         }
 
         if (bag.isSeen)

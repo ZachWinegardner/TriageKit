@@ -16,22 +16,22 @@ public class BagScript : MonoBehaviour {
 
     public bool isOpen = false;
     public bool isSeen = false;
-    public bool isTouched = false; 
-    public bool timeoutRunning = false; 
+    //public bool isTouched = false; 
+    //public bool timeoutRunning = false; 
     //adjustment to widen the range of view
     public float viewportRangeMax = 1f;
     public float viewportRangeMin = 0f;
-    public float lerpSpeed=1f;
-    public float inactivityTimeout = 20f;
-    public float touchDuration = 0.3f;
+    //public float lerpSpeed=1f;
+    //public float inactivityTimeout = 20f;
+    //public float touchDuration = 0.3f;
     public float distThreshold = 4f; 
-    public Vector3 openBagHipPosition;
-    public Vector3 openBagRotation;
+    //public Vector3 openBagHipPosition;
+    //public Vector3 openBagRotation;
     public Vector3 releasedPosition;
     public Transform head; 
-    public AnimationCurve bagLerpCurve;
-    public Coroutine timerRoutine = null;
-    public Coroutine touchRoutine = null;
+    //public AnimationCurve bagLerpCurve;
+    //public Coroutine timerRoutine = null;
+    //public Coroutine touchRoutine = null;
     public KitHipPlacement kitRotator; 
 
     public void Start()
@@ -77,7 +77,7 @@ public class BagScript : MonoBehaviour {
         
         if (!isOpen)
         {
-            Open();
+            StartCoroutine(Open()); 
         }
     }
 
@@ -93,12 +93,14 @@ public class BagScript : MonoBehaviour {
         //StartCoroutine(EvaluateDistance()); 
     }
 
-    public void Open()
+    public IEnumerator Open()
     {
         //if the bag is in view and closed, open it
         //StartCoroutine(BagHipLerp(openBagHipPosition, openBagRotation));
         popout.OpenBag();
-        isOpen = true; 
+        yield return new WaitForSeconds(.5f); 
+        isOpen = true;
+        yield return null; 
         //timerRoutine = StartCoroutine(TimeoutCheck()); 
     }
 
@@ -123,7 +125,8 @@ public class BagScript : MonoBehaviour {
         //StopCoroutine(timerRoutine); 
         transform.SetParent(hipParent); 
         //StartCoroutine(BagHipLerp(bagHomePos, bagHomeRotation));
-        transform.localPosition = bagHomePos;        
+        transform.localPosition = bagHomePos;
+        transform.localEulerAngles = bagHomeRotation; 
         popout.CloseBag();
         kitRotator.StoreRotation();
         isOpen = false;
@@ -148,28 +151,28 @@ public class BagScript : MonoBehaviour {
     }
 
     //Call with position of where you want bag to lerp to
-    IEnumerator BagHipLerp(Vector3 destPos, Vector3 destRotate)
-    {
-        float timer = 0;
-       // Vector3 startPos = transform.localPosition;
-        Vector3 startRot = transform.localEulerAngles;
+    //IEnumerator BagHipLerp(Vector3 destPos, Vector3 destRotate)
+    //{
+    //    float timer = 0;
+    //   // Vector3 startPos = transform.localPosition;
+    //    Vector3 startRot = transform.localEulerAngles;
 
-        while (timer < 1.0f)
-        {
-            //transform.localPosition = Vector3.Lerp(startPos, destPos, bagLerpCurve.Evaluate(timer));
-            transform.localEulerAngles = new Vector3(Mathf.Lerp(startRot.x, destRotate.x, bagLerpCurve.Evaluate(timer)), (Mathf.Lerp(startRot.y, destRotate.y, bagLerpCurve.Evaluate(timer))), 0);
-            timer += Time.deltaTime * lerpSpeed;
-            yield return null;
-        }
-        //transform.localPosition = destPos;
-        transform.localEulerAngles = new Vector3(destRotate.x, destRotate.y, 0);
-        //if the passed argument was not the hip rotation, then that means the bag should be open
-        if (destRotate != bagHomeRotation)
-        {
-            isOpen = true;
-        }
-        //transform.LookAt(Camera.main.transform);      
-    }
+    //    while (timer < 1.0f)
+    //    {
+    //        //transform.localPosition = Vector3.Lerp(startPos, destPos, bagLerpCurve.Evaluate(timer));
+    //        transform.localEulerAngles = new Vector3(Mathf.Lerp(startRot.x, destRotate.x, bagLerpCurve.Evaluate(timer)), (Mathf.Lerp(startRot.y, destRotate.y, bagLerpCurve.Evaluate(timer))), 0);
+    //        timer += Time.deltaTime * lerpSpeed;
+    //        yield return null;
+    //    }
+    //    //transform.localPosition = destPos;
+    //    transform.localEulerAngles = new Vector3(destRotate.x, destRotate.y, 0);
+    //    //if the passed argument was not the hip rotation, then that means the bag should be open
+    //    if (destRotate != bagHomeRotation)
+    //    {
+    //        isOpen = true;
+    //    }
+    //    //transform.LookAt(Camera.main.transform);      
+    //}
 
     //IEnumerator TouchBag()
     //{

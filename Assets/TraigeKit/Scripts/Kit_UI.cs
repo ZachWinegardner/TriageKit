@@ -8,21 +8,30 @@ public class Kit_UI : MonoBehaviour {
     public Transform featureLocation;
     public TextMesh text;
 
+    private Vector3 featureRotation; 
+
     public InstrumentGrabbing prefabStats;
 
     private void Start()
     {
-        text.text = null; 
+        text.text = null;
+        featureRotation = new Vector3(0, 0, 0); 
     }
 
     public void ShowInstrument(GameObject instrument)
     {
         if (instrument != featuredInstrument)
         {
-            Destroy(featuredInstrument); 
-            featuredInstrument = Instantiate(instrument, featureLocation.position, Quaternion.identity, transform) as GameObject;
+            Destroy(featuredInstrument);
+            featureRotation = instrument.transform.localEulerAngles;
+           // print(featureRotation.ToString()); 
+            featuredInstrument = Instantiate(instrument, featureLocation.position, Quaternion.identity, featureLocation) as GameObject;
+            featuredInstrument.transform.localEulerAngles = featureRotation;
+           // print(featuredInstrument.transform.localEulerAngles.ToString()); 
+            
             prefabStats = featuredInstrument.GetComponent<InstrumentGrabbing>();
             text.text = prefabStats.type.ToString() + ": " + SuppliesManager.instance.counts[(int)prefabStats.type];
+            prefabStats.selfPrefab = instrument; 
         }
     }
 

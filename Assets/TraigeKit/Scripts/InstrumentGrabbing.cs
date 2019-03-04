@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InstrumentGrabbing : MonoBehaviour {
     private Transform handGrabber;
+    private bool canBePutBack = false; 
 
     public Transform bag, icon;
     public Kit_UI UI;
@@ -28,35 +29,41 @@ public class InstrumentGrabbing : MonoBehaviour {
         UI = GameObject.Find("Shaped_Bag").GetComponent<Kit_UI>(); 
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            print(selfPrefab.transform.localEulerAngles.ToString()); 
+        }
+    }
+
     public void Grabbed(Transform hand) {
         transform.SetParent(hand);
         transform.localPosition = heldPosition;
         transform.localEulerAngles = orientation;
 
         SuppliesManager.instance.counts[(int)type]--;
-        UI.InstrumentGrabbed();
-        handGrabber = hand;
-        handGrabber.GetComponent<valveInput>().objectHeld = transform;
+        UI.InstrumentGrabbed();       
 
     }
 
-    public void Released()
+    public void Touched(bool state)
     {
-        //the hand clears out objectHeld on Grip up. Since this doesn't actually release the instruments, they need to remind the controller script its still holding it
-        
+        GetComponent<SelectionHighlight>().Highlight(state);
+    }
+
+    public void Released()
+    {        
     }
 
     public void Apply()
     {
-        handGrabber.GetComponent<valveInput>().touchedObject = null;
         Destroy(gameObject);
     }
 
     public void Returned()
     {
-        print("destroying");
-        handGrabber.GetComponent<valveInput>().objectHeld = null;
-        handGrabber.GetComponent<valveInput>().touchedObject = null;
+        //print("destroying");       
         SuppliesManager.instance.counts[(int)type]++;
         UI.ShowInstrument(selfPrefab); 
         Destroy(gameObject);
@@ -64,9 +71,14 @@ public class InstrumentGrabbing : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Finish")
+        if (other.gameObject.tag == "PutBack" && canBePutBack)
         {
-            Returned(); 
+           Returned(); 
         }
-    }   
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        canBePutBack = true; 
+    }
 }

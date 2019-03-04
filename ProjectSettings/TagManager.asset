@@ -8,6 +8,7 @@ TagManager:
   - tool
   - projectile
   - FxTemporaire
+  - PutBack
   layers:
   - Default
   - TransparentFX
