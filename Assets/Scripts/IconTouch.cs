@@ -16,12 +16,12 @@ public class IconTouch : MonoBehaviour {
     private void Start()
     {
         typeIndex = (int)operableInstrumentPrefab.GetComponent<InstrumentGrabbing>().type;
-        print(typeIndex.ToString()); 
+        //print(typeIndex.ToString()); 
     }
 
     public void Touched(bool state)
     {
-        if (state)
+        if (state && bag.isOpen)
         {
             if (SuppliesManager.instance.counts[typeIndex] > 0)
             {
@@ -34,10 +34,8 @@ public class IconTouch : MonoBehaviour {
         }
        
         GetComponent<SelectionHighlight>().Highlight(state);
-        bag.ResetTimeout();
-        print("reset called"); 
-
-
+        //bag.ResetTimeout();
+        
         //if (SuppliesManager.instance.counts[(int)type] > 0)
         //{
         //    GameObject instrument = Instantiate(operableInstrumentPrefab, transform.position, transform.rotation) as GameObject;            

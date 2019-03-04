@@ -203,7 +203,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &65079703654443798
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -230,6 +230,7 @@ MonoBehaviour:
   bag: {fileID: 0}
   icon: {fileID: 0}
   UI: {fileID: 0}
+  selfPrefab: {fileID: 1461920014677820}
   type: 6
   heldPosition: {x: -0.0251, y: -0.0294, z: 0.0201}
   orientation: {x: 71.76701, y: -179.36, z: -178.747}

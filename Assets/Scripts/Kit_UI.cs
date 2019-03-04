@@ -29,13 +29,14 @@ public class Kit_UI : MonoBehaviour {
     public void Clear()
     {
         Destroy(featuredInstrument);
-        InstrumentGrabbed(); 
+        featuredInstrument = null;
+        text.text = null;
     }
 
     public void InstrumentGrabbed()
     {
+        text.text = prefabStats.type.ToString() + ": " + SuppliesManager.instance.counts[(int)prefabStats.type];
         featuredInstrument = null;
-        text.text = null; 
     }
 
 

@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InstrumentGrabbing : MonoBehaviour {
+    private Transform handGrabber;
 
     public Transform bag, icon;
     public Kit_UI UI;
+    public GameObject selfPrefab; 
     public enum toolType: int
     {
         SurgicalTape = 0,
@@ -31,27 +33,40 @@ public class InstrumentGrabbing : MonoBehaviour {
         transform.localPosition = heldPosition;
         transform.localEulerAngles = orientation;
 
-        hand.GetComponent<valveInput>().objectHeld = transform;
         SuppliesManager.instance.counts[(int)type]--;
         UI.InstrumentGrabbed();
-    } 
-    
+        handGrabber = hand;
+        handGrabber.GetComponent<valveInput>().objectHeld = transform;
+
+    }
+
     public void Released()
     {
-        Destroy(gameObject);       
+        //the hand clears out objectHeld on Grip up. Since this doesn't actually release the instruments, they need to remind the controller script its still holding it
+        
+    }
+
+    public void Apply()
+    {
+        handGrabber.GetComponent<valveInput>().touchedObject = null;
+        Destroy(gameObject);
     }
 
     public void Returned()
     {
-        Destroy(gameObject);
+        print("destroying");
+        handGrabber.GetComponent<valveInput>().objectHeld = null;
+        handGrabber.GetComponent<valveInput>().touchedObject = null;
         SuppliesManager.instance.counts[(int)type]++;
+        UI.ShowInstrument(selfPrefab); 
+        Destroy(gameObject);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.name.Contains("Bag"))
+        if (other.gameObject.tag == "Finish")
         {
             Returned(); 
         }
-    }
+    }   
 }

@@ -47,28 +47,34 @@ public class KitHipPlacement : MonoBehaviour {
         //    transform.localEulerAngles = new Vector3(0, cam.localEulerAngles.y - hipAngleAdjustment, 0);
         //}
 
+        
         //Follower only tracks y axis
         yFollow.y = cam.eulerAngles.y;
         yAxisFollower.eulerAngles = yFollow;
 
-        //quaternion comparison only on y axis rotations
-        float distance = Quaternion.Angle(yAxisFollower.rotation, startRotation);
-        //print(distance.ToString());
+        if (!bag.isOpen)
+        {            
+            //quaternion comparison only on y axis rotations
+            float distance = Quaternion.Angle(yAxisFollower.rotation, startRotation);
+            //print(distance.ToString());
+
+            if (distance >= threshold)
+            {
+                StoreRotation();
+                StartCoroutine(ReorientBag());
+            }
+        }
 
         if (bag.isSeen)
         {
-            threshold = 120;
+            threshold = 110;
         }
         else
         {
-            threshold = 45; 
+            threshold = 30; 
         }
 
-        if (distance >= threshold)
-        {
-            StoreRotation();
-            StartCoroutine(ReorientBag()); 
-        }
+       
     }
 
     IEnumerator ReorientBag()
@@ -89,7 +95,7 @@ public class KitHipPlacement : MonoBehaviour {
         transform.rotation = startRotation; 
     }
 
-    void StoreRotation()
+    public void StoreRotation()
     {
         startRotation = yAxisFollower.rotation;  
     }

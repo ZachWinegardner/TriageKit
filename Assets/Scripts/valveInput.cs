@@ -10,7 +10,8 @@ public class valveInput : MonoBehaviour {
     //It mainly sends a standard message to interactable objects to trigger unique functions, all under a ubiquitous "grabbed" method
     //Also includes input management via Alan's "viveInput" script
     private Hand hand;
-    public Transform draggableObject;    
+    public bool gripping = false; 
+    public Transform touchedObject;    
     public Transform objectHeld; 
     public bool pinchHold = false;
     public bool releaseOnPinchUp = false;
@@ -19,6 +20,7 @@ public class valveInput : MonoBehaviour {
 
     public Animator anim;
     public Transform bagTrigger; 
+    public bool triggerForGrabbing = false; 
     
 	void Start () {
         hand = gameObject.GetComponent<Hand>();
@@ -29,91 +31,168 @@ public class valveInput : MonoBehaviour {
     //Specific items, like tools and tags, will also store themselves as "objectHeld" if grabbed)
     void Update() {
        
-        //Pulling the trigger can both pickup a new item, but also use a currently held item
-        // With an empty hand, Send Grabbed message to touched object when trigger pulled
-        // With tool in hand, Cannot pickup new objects if a tool is being held
-            //If a tools is held and trigger pulled, the tool is used/returned to bag
-        if (getPinchDown())
+        if (triggerForGrabbing)
         {
-           
-            if (!releaseOnPinchUp)
+            // With an empty hand, Send Grabbed message to touched object when grip pulled               
+            if (getPinchDown())
             {
-                //For holding trigger to grasp objects (if held for 1 second, switches release condition)
-                StartCoroutine(HoldingPinch());
 
-                //if holding something already, release that thing 
-                if (objectHeld != null)
+                if (!releaseOnPinchUp)
                 {
-                    Send(objectHeld, "Released");
-                    objectHeld = null;
-                }
-                else
-                {
-                    //FOR EMPTY HAND
-                    //Pickup if touching object (stores tools and tags as "objectHeld")
-                    if (draggableObject != null)
+                    //For holding trigger to grasp objects (if held for 1 second, switches release condition)
+                    //StartCoroutine(HoldingPinch());
+
+
+                    //if holding something already, release that thing 
+                    if (objectHeld)
                     {
-                        Send(draggableObject, "Grabbed");
+                        Send(objectHeld, "Released");
+                        objectHeld = null;
+                    }
+                    else
+                    {
+                        //FOR EMPTY HAND
+                        //Pickup if touching object (will store thing grabbed as "objectHeld")
+                        if (touchedObject)
+                        {
+                            Send(touchedObject, "Grabbed");
+                            objectHeld = touchedObject;
+                        }
                     }
                 }
+
+                //bag.ResetTimeout(); 
             }
 
-            bag.ResetTimeout(); 
-        }
-
-        if (getPinchUp())
-        {
-            StopAllCoroutines(); 
-
-            //For letting go of bag (will optimize to include letting go of tools upon specific condition)
-            if (draggableObject != null && objectHeld == null)
+            if (getPinchUp())
             {
-                Send(draggableObject, "Released");                 
-            }   
-            
-            if (releaseOnPinchUp)
-            {
-                if (objectHeld != null)
+                //StopAllCoroutines(); 
+
+                //if something held, let go of it
+                if (objectHeld)
                 {
-                    //Let go of thing in hand (for pinch holding logic)                   
                     Send(objectHeld, "Released");
                     objectHeld = null;
-                }               
-                releaseOnPinchUp = false;
+                }
 
+                //if (releaseOnPinchUp)
+                //{
+                //    if (objectHeld != null)
+                //    {
+                //        //Let go of thing in hand (for pinch holding logic)                   
+                //        Send(objectHeld, "Released");
+                //        objectHeld = null;
+                //    }               
+                //    releaseOnPinchUp = false;
+
+                //}
             }
-        }    
-        
-        if (reaching)
-        {
-            anim.SetFloat("nTime", Mathf.InverseLerp(0.6f, 0.22f, (Vector3.Distance(transform.position, bagTrigger.position))));
-            print(Vector3.Distance(transform.position, bagTrigger.position)); 
-            if (anim.GetFloat("nTime") >= 1f)
+
+            if (getGrip_Down())
             {
-                reaching = false; 
+                if (objectHeld)
+                {
+                    Send(objectHeld, "Apply");
+                    objectHeld = null;
+                }
             }
         }
+        else
+        {
+            // With an empty hand, Send Grabbed message to touched object when grip pulled               
+            if (getGrip_Down())
+            {
+                if (touchedObject != null)
+                {
+                    Send(touchedObject, "Grabbed");
+                }
+                gripping = true;
+
+
+                //objectHeld = touchedObject;
+
+                //if (!releaseOnPinchUp)
+                //{
+                //    //For holding trigger to grasp objects (if held for 1 second, switches release condition)
+                //    //StartCoroutine(HoldingPinch());
+
+
+                //    if holding something already, release that thing
+                //    if (objectHeld)
+                //    {
+                //        Send(objectHeld, "Released");
+                //        objectHeld = null;
+                //    }
+                //    else
+                //    {
+                //        //FOR EMPTY HAND
+                //        //Pickup if touching object (will store thing grabbed as "objectHeld")
+                //        if (touchedObject)
+                //        {
+                //            Send(touchedObject, "Grabbed");
+                //            objectHeld = touchedObject;
+                //        }
+                //    }
+                //}
+
+                //bag.ResetTimeout(); 
+            }
+
+            if (getGrip_Up())
+            {
+                //StopAllCoroutines(); 
+
+                //if something held, let go of it  
+                if (touchedObject != null)
+                {
+                    Send(touchedObject, "Released");
+                }
+                    gripping = false;
+
+
+                //if (releaseOnPinchUp)
+                //{
+                //    if (objectHeld != null)
+                //    {
+                //        //Let go of thing in hand (for pinch holding logic)                   
+                //        Send(objectHeld, "Released");
+                //        objectHeld = null;
+                //    }               
+                //    releaseOnPinchUp = false;
+
+                //}
+            }
+
+            if (getPinchDown())
+            {
+                if (objectHeld)
+                {
+                    Send(objectHeld, "Apply");
+                    objectHeld = null;
+                }
+            }
+        }
+        
+        
     }
     
 
-    //Called when touching an object
+    //FOR TOUCHING
     private void OnCollisionEnter(Collision collision)
     {
-        //If the object is interactable
-        if (collision.gameObject.tag == "draggable" )
-        {
-
-            //If there is already an object being touched, turn its highlight off (objects have own script for hightlight, calls on that)
-            if (draggableObject != null)
+        //If the object is interactable and you currently aren't holding anything
+        if (collision.gameObject.tag == "draggable" && !gripping)
+        {            
+            //Set the newly touched object if the hand is empty and you aren't currently gripping
+            if (objectHeld == null)
             {
-                Send(draggableObject, "Touched", false); 
-            }
-
-            //Set the newly touched object and highlight it as long as there's no tool in hand or if you touch the bag
-            if (objectHeld == null || collision.gameObject.name.Contains("Bag"))
-            {
-                draggableObject = collision.transform;
-                Send(draggableObject, "Touched", true);
+                //If there is already an object being touched, "untouch" that object
+                if (touchedObject != null)
+                {
+                    Send(touchedObject, "Touched", false);
+                }
+                touchedObject = collision.transform;
+                Send(touchedObject, "Touched", true);
             }           
         }
     }
@@ -124,50 +203,25 @@ public class valveInput : MonoBehaviour {
         if (collision.gameObject.tag == "draggable")
         {
 
-            Send(draggableObject, "Touched", false); 
+            Send(touchedObject, "Touched", false); 
 
-            //Clears draggableObject as long as the exited object is equal to draggableObj
-            //If there is alread a draggableObject stored while a new object is touched, this ensures that new object will get stored as the new draggableObj
-            //Previous issues of clearing out draggableObj completely when new obj touched, would equal null instead of storing new thing
-            if (collision.transform == draggableObject)
+            //Clears touchedObject as long as the exited object is equal to touchedObj
+            //If there is alread a touchedObject stored while a new object is touched, this ensures that new object will get stored as the new touchedObj
+            //Previous issues of clearing out touchedObj completely when new obj touched, would equal null instead of storing new thing
+            if (collision.transform == touchedObject)
             {
-                draggableObject = null;
+                touchedObject = null;
             }
         }         
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        anim = other.GetComponent<Animator>();
-        bagTrigger = other.transform;
-
-        if (other.name.Contains("reach"))
-        {
-            reaching = true;
-        }
-        else
-        {
-            anim.SetFloat("nTime", .9f);
-            bagTrigger.parent.GetChild(0).gameObject.SetActive(true); 
-
-        }
-
-
+       
     }
 
     private void OnTriggerExit(Collider other)
-    {
-        if (other.name.Contains("reach"))
-        {
-            reaching = false;
-        }
-        else
-        {
-            anim.speed = 0f;
-            anim.SetFloat("nTime", 0f);
-            bagTrigger.parent.GetChild(0).gameObject.SetActive(false);
-
-        }
+    {           
 
     }
 

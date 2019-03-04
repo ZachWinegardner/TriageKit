@@ -203,7 +203,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &65967477230090164
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -214,7 +214,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.05, z: 0.018}
+  m_Size: {x: 0.21, y: 0.055, z: 0.02}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114228062642024554
 MonoBehaviour:
@@ -243,6 +243,7 @@ MonoBehaviour:
   bag: {fileID: 0}
   icon: {fileID: 0}
   UI: {fileID: 0}
+  selfPrefab: {fileID: 1470335534337116}
   type: 4
   heldPosition: {x: -0.0155, y: -0.0175, z: 0.0105}
   orientation: {x: -99.305, y: -4.233, z: -0.056}
