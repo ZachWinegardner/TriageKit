@@ -9,6 +9,7 @@ TagManager:
   - projectile
   - FxTemporaire
   - PutBack
+  - Hip
   layers:
   - Default
   - TransparentFX

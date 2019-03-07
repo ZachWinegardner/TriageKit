@@ -32,7 +32,7 @@ public class mcivr_controllerInput : MonoBehaviour {
             }
         }
 
-        if (getGrip_Up()) {
+        if (getGrip_Up() || getPinchUp()) {
             
             // if there is a grabbed object then release it
             if (grabber.childCount > 0) {
@@ -48,7 +48,7 @@ public class mcivr_controllerInput : MonoBehaviour {
            }
            // tell a touched object to "apply"
            else if (touchedObject) {
-                touchedObject.SendMessage("Apply", grabber, SendMessageOptions.DontRequireReceiver);
+                touchedObject.SendMessage("Grabbed", grabber, SendMessageOptions.DontRequireReceiver);
             }
 
         }

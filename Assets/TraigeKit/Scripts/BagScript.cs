@@ -16,6 +16,7 @@ public class BagScript : MonoBehaviour {
 
     public bool isOpen = false;
     public bool isSeen = false;
+    public bool atHip = true; 
     //public bool isTouched = false; 
     //public bool timeoutRunning = false; 
     //adjustment to widen the range of view
@@ -130,6 +131,7 @@ public class BagScript : MonoBehaviour {
         popout.CloseBag();
         kitRotator.StoreRotation();
         isOpen = false;
+        atHip = true; 
         GetComponent<Kit_UI>().Clear();
     }
 
@@ -148,6 +150,22 @@ public class BagScript : MonoBehaviour {
         }
         else return false;
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.tag == "Hip" && !atHip)
+        {
+            ReturnToHip(); 
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.transform.tag == "Hip" && atHip)
+        {
+            atHip = false; 
+        }
     }
 
     //Call with position of where you want bag to lerp to

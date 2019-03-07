@@ -36,6 +36,12 @@ public class SelectionHighlight : MonoBehaviour {
                 transform.GetChild(1).GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
                 transform.GetChild(1).GetComponent<Renderer>().material.SetColor("_EmissionColor", color);
 
+                transform.GetChild(2).GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
+                transform.GetChild(2).GetComponent<Renderer>().material.SetColor("_EmissionColor", color);
+
+                transform.GetChild(3).GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
+                transform.GetChild(3).GetComponent<Renderer>().material.SetColor("_EmissionColor", color);
+
                 print("set highlight"); 
 
                 

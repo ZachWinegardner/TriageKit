@@ -91,13 +91,14 @@ public class popoutInstruments : MonoBehaviour {
         while (lerper < 1.0f) {
             instrument.localPosition = Vector3.Lerp(startPos, destPos, popoutCurve.Evaluate(lerper));
             instrument.localScale = Vector3.Lerp(startScale,destScale, scaleCurve.Evaluate(lerper));
-            bagLid.localEulerAngles = new Vector3(Mathf.Lerp(0f, 115f, lidOpenCurve.Evaluate(lerper)), 0, 0);
+            bagLid.localEulerAngles = new Vector3(Mathf.Lerp(0f, 125f, lidOpenCurve.Evaluate(lerper)), 0, 0);
             bagLid.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, (Mathf.Lerp(0f, 100f, lidOpenCurve.Evaluate(lerper))));
             lerper += Time.deltaTime * speed;
             yield return null;
         }
         instrument.localPosition = destPos;
         instrument.localScale = destScale;
+        instrument.GetComponent<BoxCollider>().enabled = true; 
         
     }
 
@@ -108,13 +109,14 @@ public class popoutInstruments : MonoBehaviour {
         Quaternion destRot = rotations[instrumentIndex];
         Vector3 startScale = instrument.localScale;
         Vector3 startPos = instrument.localPosition;
+        instrument.GetComponent<BoxCollider>().enabled = false;
         float lerper = 0;
         while (lerper < 1.0f)
         {
 
             instrument.localPosition = Vector3.Lerp(startPos, destPos, popoutCurve.Evaluate(lerper));
             instrument.localScale = Vector3.Lerp(startScale, destScale, popoutCurve.Evaluate(lerper));
-            bagLid.localEulerAngles = new Vector3(Mathf.Lerp(115f, 0f, lidOpenCurve.Evaluate(lerper)), 0, 0);
+            bagLid.localEulerAngles = new Vector3(Mathf.Lerp(125f, 0f, lidOpenCurve.Evaluate(lerper)), 0, 0);
             bagLid.GetComponent<SkinnedMeshRenderer>().SetBlendShapeWeight(0, (Mathf.Lerp(100f, 0f, lidOpenCurve.Evaluate(lerper))));
 
             lerper += Time.deltaTime * speed;

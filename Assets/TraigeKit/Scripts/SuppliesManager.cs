@@ -10,6 +10,7 @@ public class SuppliesManager : MonoBehaviour
 
     public int surgTapeCount, gauzeCount, occluCount, splintCount, tournCount, shearsCount, needleCount, nasoCount;
     public int[] counts;
+    public int supplyResetCount = 5; 
 
     void Awake()
     {
@@ -29,6 +30,16 @@ public class SuppliesManager : MonoBehaviour
         counts = new int[] { surgTapeCount, gauzeCount, occluCount, splintCount, tournCount, shearsCount, needleCount, nasoCount };
       
     }
-   
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            for(int i = 0; i<counts.Length; i++)
+            {
+                counts[i] = supplyResetCount; 
+            }
+        }
+    }   
 
 }
