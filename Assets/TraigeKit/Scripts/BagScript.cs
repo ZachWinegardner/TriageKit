@@ -13,6 +13,7 @@ public class BagScript : MonoBehaviour {
     private popoutInstruments popout;
     private Vector3 bagHomePos;
     private Vector3 bagHomeRotation;
+    private BoxCollider bagCollider, lidCollider, closedCollider; 
 
     public bool isOpen = false;
     public bool isSeen = false;
@@ -33,7 +34,8 @@ public class BagScript : MonoBehaviour {
     //public AnimationCurve bagLerpCurve;
     //public Coroutine timerRoutine = null;
     //public Coroutine touchRoutine = null;
-    public KitHipPlacement kitRotator; 
+    public KitHipPlacement kitRotator;
+     
 
     public void Start()
     {
@@ -43,7 +45,11 @@ public class BagScript : MonoBehaviour {
         SetToViewport();
         bagHomePos = transform.localPosition;
         bagHomeRotation = transform.localEulerAngles;
-        head = Camera.main.transform; 
+        head = Camera.main.transform;
+        bagCollider = transform.GetChild(1).GetComponent<BoxCollider>();
+        lidCollider = transform.GetChild(0).GetComponent<BoxCollider>();
+        closedCollider = GetComponent<BoxCollider>();
+            
     }
     private void Update()
     {
@@ -54,7 +60,17 @@ public class BagScript : MonoBehaviour {
 
         if (SteamVR_Input._default.inActions.GrabPinch.GetStateDown(SteamVR_Input_Sources.Any))
         {
-          //  Open();
+            //StartCoroutine(Open()); 
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            GetComponent<BoxCollider>().enabled = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            GetComponent<BoxCollider>().enabled = false;
         }
 
         SetToViewport();
@@ -91,6 +107,9 @@ public class BagScript : MonoBehaviour {
     {
         transform.SetParent(null);
         releasedPosition = transform.position;
+        bagCollider.enabled = true;
+        lidCollider.enabled = true; 
+        GetComponent<BoxCollider>().enabled = false;
         //StartCoroutine(EvaluateDistance()); 
     }
 
@@ -131,7 +150,10 @@ public class BagScript : MonoBehaviour {
         popout.CloseBag();
         kitRotator.StoreRotation();
         isOpen = false;
-        atHip = true; 
+        atHip = true;
+        GetComponent<BoxCollider>().enabled = true;
+        bagCollider.enabled = false;
+        lidCollider.enabled = false; 
         GetComponent<Kit_UI>().Clear();
     }
 
@@ -156,7 +178,7 @@ public class BagScript : MonoBehaviour {
     {
         if (other.transform.tag == "Hip" && !atHip)
         {
-            ReturnToHip(); 
+            //ReturnToHip(); 
         }
     }
 

@@ -89,10 +89,14 @@ public class mcivr_controllerInput : MonoBehaviour {
             StartCoroutine(MakePulse(strength, rate));
         }
 
+        print("entered new trigger"); 
+
     }
 
     private void OnTriggerExit(Collider other) {
         StopAllCoroutines();
+        print("left trigger");
+
     }
 
     // coroutine that makes continuous pulse - not tested yet
