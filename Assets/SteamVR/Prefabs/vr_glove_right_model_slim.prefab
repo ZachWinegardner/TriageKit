@@ -1028,13 +1028,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00f6c0d7b5a00aa4a8d38a09a0480032, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonAction: {fileID: 11400000, guid: be4d4e1f361765a4fac7c4d8cad03a5e, type: 2}
+  skeletonAction: {fileID: 0}
   inputSource: 2
   rangeOfMotion: 0
   skeletonRoot: {fileID: 4000011264745556}
   origin: {fileID: 0}
   updatePose: 1
-  onlySetRotations: 0
+  onlySetRotations: 1
   skeletonBlend: 1
   mirroring: 0
 --- !u!137 &137000012777032580
