@@ -89,7 +89,7 @@ public class mcivr_controllerInput : MonoBehaviour {
             StartCoroutine(MakePulse(strength, rate));
         }
 
-        print("entered new trigger"); 
+        //print("entered new trigger"); 
 
     }
 

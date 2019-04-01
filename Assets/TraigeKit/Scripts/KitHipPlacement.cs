@@ -42,41 +42,43 @@ public class KitHipPlacement : MonoBehaviour {
         kitPos.y = Mathf.Lerp(minHip, maxHip, normalizedHeadHeight);
         kit.position = kitPos;
 
+        transform.rotation = cam.rotation; 
+
         //if (smoothOrient && !bag.isOpen)
         //{
         //    transform.localEulerAngles = new Vector3(0, cam.localEulerAngles.y - hipAngleAdjustment, 0);
         //}
 
         
-        //Follower only tracks y axis
-        yFollow.y = cam.eulerAngles.y;
-        yAxisFollower.eulerAngles = yFollow;
+        //---Follower only tracks y axis
+        //yFollow.y = cam.eulerAngles.y;
+        //yAxisFollower.eulerAngles = yFollow;
 
-        if (!bag.isOpen)
-        {
-            //quaternion comparison only on y axis rotations
-            float distance = Quaternion.Angle(yAxisFollower.rotation, startRotation);
-            //print(distance.ToString());
+        //if (!bag.isOpen)
+        //{
+        //    //quaternion comparison only on y axis rotations
+        //    float distance = Quaternion.Angle(yAxisFollower.rotation, startRotation);
+        //    //print(distance.ToString());
 
-            if (distance >= threshold)
-            {
-                StoreRotation();
-                StartCoroutine(ReorientBag());
-            }
-        }
-        else
-        {
-            transform.rotation = yAxisFollower.rotation;
-        }
+        //    if (distance >= threshold)
+        //    {
+        //        StoreRotation();
+        //        StartCoroutine(ReorientBag());
+        //    }
+        //}
+        //else
+        //{
+        //    transform.rotation = yAxisFollower.rotation;
+        //}
 
-        if (bag.isSeen)
-        {
-            threshold = 110;
-        }
-        else
-        {
-            threshold = 30; 
-        }
+        //if (bag.isSeen)
+        //{
+        //    threshold = 110;
+        //}
+        //else
+        //{
+        //    threshold = 30; 
+        //}
 
        
     }

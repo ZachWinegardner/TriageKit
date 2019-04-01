@@ -10,6 +10,7 @@ TagManager:
   - FxTemporaire
   - PutBack
   - Hip
+  - Reach
   layers:
   - Default
   - TransparentFX

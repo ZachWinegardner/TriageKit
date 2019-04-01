@@ -700,11 +700,33 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 0.0745
       objectReference: {fileID: 0}
+    - target: {fileID: 114028297906539116, guid: a68d0379f60a7aa499bbf3ec2b5d5c14,
+        type: 2}
+      propertyPath: smoothOrient
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 65104065724021648, guid: a68d0379f60a7aa499bbf3ec2b5d5c14, type: 2}
     - {fileID: 64774944016539348, guid: a68d0379f60a7aa499bbf3ec2b5d5c14, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: a68d0379f60a7aa499bbf3ec2b5d5c14, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &402428900 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1185692540050146, guid: a68d0379f60a7aa499bbf3ec2b5d5c14,
+    type: 2}
+  m_PrefabInternal: {fileID: 402428899}
+--- !u!135 &402428901
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 402428900}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.2
+  m_Center: {x: 0.14, y: 0, z: -0.06}
 --- !u!1 &416466175 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 144230, guid: dc06161b6d97feb419f45f03b62e14b9,
